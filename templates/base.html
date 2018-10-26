@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Twitter Inteface</title>
+    <!-- Material Icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Bootstrap-->
+    <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="{{url_for('static', filename='css/font-awesome.css')}}" rel="stylesheet" />
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <!-- Custom Styles-->
+    <link href="{{url_for('static', filename='css/custom-styles.css')}}" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+</head>
+
+
+
+<body>
+    <!-- WRAPPER -->
+    <div id="wrapper">
+
+
+        <!-- TOP NAVBAR -->
+        <nav class="navbar navbar-default top-navbar">
+            <div class="col-md-5 text-center"></div>
+            <div class="col-md-2 text-center">
+                <a class="navbar-brand waves-effect waves-dark" href="{{url_for('interface')}}"><i class="fab fa-1x fa-twitter-square"></i><strong> Twitter Interface</strong></a>
+            </div>
+            <div class="col-md-5 text-center"></div>
+        </nav>
+
+        <!--/. TOP NAVBAR ****************************************************************************************************************************************************************************************** -->
+
+        <!-- PAGE-WRAPPER -->
+        <div id="page-wrapper">
+            <!-- PAGE-INDEX -->
+            <div id="page-index">
+                <div class="dashboard-cards">
+                    {% block content %} {% endblock %}
+
+
+
+
+
+                </div>
+
+            </div>
+            <!-- PAGE-INDEX -->
+
+        </div>
+
+        <!-- PAGE-WRAPPER -->
+
+    </div>
+    <!-- WRAPPER -->
+    <!-- Materialize Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <!-- Materialize Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Bootstrap Js -->
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+    <script type="text/javascript">    
+      $(document).ready(function(){
+        $('select').formSelect();
+      });
+      $(document).ready(function(){
+        $('.datepicker').datepicker();
+      });
+    </script>
+    <!-- Custom Js -->
+
+</body>
+
+</html>
