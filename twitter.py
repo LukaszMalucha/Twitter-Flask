@@ -216,6 +216,8 @@ LON_WOE_ID = 44418
 
 keyword_list = ['python', 'javascript', 'php', 'C#']
 
+limit = 100
+
 class MyStreamListener(StreamListener):
     
     def __init__(self):
@@ -223,13 +225,17 @@ class MyStreamListener(StreamListener):
         self.num_tweets = 0
         
     def on_data(self, data):
-        try:
-            with open('tweet_mining.json', 'a') as tweet_file:
-                tweet_file.write(data)
-                return True
-        except BaseException as e:
-            print("Failed %s"%str(e))
-        return True    
+        if self.num_tweets < limit: 
+            self.num_tweets += 1
+            try:
+                with open('tweet_mining.json', 'a') as tweet_file:
+                    tweet_file.write(data)
+                    return True
+            except BaseException as e:
+                print("Failed %s"%str(e))
+            return True 
+        else:
+            return False
         
     def on_error(self, status):
         print(status)
