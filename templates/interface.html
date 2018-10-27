@@ -9,49 +9,13 @@
                     <div class="col-md-2 text-center"></div>
                     <div class="col-md-8 text-center">
                         <br>
-                        <h1>Tweets</h1>
+                        <h1>Options</h1>
                     </div>
                     <div class="col-md-2 text-center"></div>
                 </div>
                 <br>
                 <br>
-                <div class="row">
-                    <div class="row">
-                        <div class="col-md-2 text-center">
-                            <h2> Hashtag  </h2>
-                        </div>
-                        <div class="col-md-2 text-center">
-                            <h2> Retweets </h2>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <h2> Tweet </h2>
-                        </div>
-                        <div class="col-md-2 text-center">
-                            <h2> Edit </h2>
-                        </div>
-                        <div class="col-md-2 text-center">
-                            <h2> Delete </h2>
-                        </div>
-                    </div>
-                    {% for tweet in tweets %}
-                    <div class="row">
-                        <div class="col-md-2 text-center">
-                            <h5> {{ tweet.hashtag }}</h5>
-                        </div>
-                        <div class="col-md-2 text-center">
-                         {{ tweet.retweets }}
-                        </div>    
-                        <div class="col-md-4 text-center">
-                            <h5> {{ tweet.text }} </h5>
-                        </div>
-                        <div class="col-md-2 text-center">
-                            <a href="" class="waves-effect waves-light btn">Edit</a>
-                        </div>
-                        <div class="col-md-2 text-center">
-                            <a href="" class="waves-effect waves-light btn red">Delete</a>
-                        </div>
-                    </div>
-                    {% endfor %}
+                
 
 
                     <div class="row text-center">
@@ -65,25 +29,19 @@
 
                     </div>
                     <div class="row text-center">
-                        <div class="col-md-2 text-center"></div>
-                        <div class="col-md-8 text-center">
-                            <a href="" class="waves-effect waves-light btn-large" style="display: inline-block;">Add Tweets</a>
+                        <div class="col-md-2 text-center">
+                            <a href="{{url_for('twitter_trends')}}" class="waves-effect waves-light btn-large" style="display: inline-block;">Common Trends</a>
                         </div>
-                        <div class="col-md-2 text-center"></div>
                     </div>
                     <div class="row text-center">
-                        <div class="col-md-2 text-center"></div>
-                        <div class="col-md-8 text-center">
+                        <div class="col-md-2 text-center">
                             <a href="" class="waves-effect waves-light btn-large" style="display: inline-block;">Add Hashtags</a>
                         </div>
-                        <div class="col-md-2 text-center"></div>
                     </div>
                      <div class="row text-center">
-                        <div class="col-md-2 text-center"></div>
-                        <div class="col-md-8 text-center">
+                        <div class="col-md-2 text-center">
                             <a href="" class="waves-effect waves-light btn-large" style="display: inline-block;">Hashtags</a>
                         </div>
-                        <div class="col-md-2 text-center"></div>
                     </div>
                     <div class="row text-center">
                     </div>

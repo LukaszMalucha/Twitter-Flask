@@ -28,16 +28,16 @@ DUB_WOE_ID = 560743
 LON_WOE_ID = 44418
 
 
-## Common Hashatgs
-# dub_trends = api.trends_place(DUB_WOE_ID)
-# lon_trends = api.trends_place(LON_WOE_ID)
+# Common Hashatgs
+dub_trends = api.trends_place(DUB_WOE_ID)
+lon_trends = api.trends_place(LON_WOE_ID)
 
-# dub_trends_set = set([trend['name'] for trend in dub_trends[0]['trends']])
-# lon_trends_set = set([trend['name'] for trend in lon_trends[0]['trends']])
+dub_trends_set = set([trend['name'] for trend in dub_trends[0]['trends']])
+lon_trends_set = set([trend['name'] for trend in lon_trends[0]['trends']])
 
-# common_trends = set.intersection(dub_trends_set, lon_trends_set)
+common_trends = set.intersection(dub_trends_set, lon_trends_set)
 
-# print(dub_trends_set, common_trends)
+print(dub_trends_set, common_trends)
 
 # ## Get Tweets
 
