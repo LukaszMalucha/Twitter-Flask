@@ -40,7 +40,8 @@ api = tweepy.API(auth)
 
 ################################################################### VIEWS ################################
 
-## Home
+########################################################################### Home
+
 @app.route('/')
 @app.route('/interface')
 def interface():
@@ -48,12 +49,15 @@ def interface():
     return render_template("interface.html")
     
     
-###### Trends Intersection    
+############################################################ Trends Intersection 
+
+## http://www.woeidlookup.com/
+
 @app.route('/twitter_trends')
 def twitter_trends():
     
-    
-    return render_template("twitter_trends.html")
+    message = ""
+    return render_template("twitter_trends.html", message=message)
     
     
 @app.route('/common_trends', methods=['POST'])
@@ -62,26 +66,62 @@ def common_trends():
     city_1 = request.form.get('city_1')
     city_2 = request.form.get('city_2')
     
-    city_1_trends = api.trends_place(city_1)
-    city_2_trends = api.trends_place(city_2)
+    try:
+        city_1_trends = api.trends_place(city_1)
+        city_2_trends = api.trends_place(city_2)
+        
+        # if city_1_trends and city_2_trends:
+            
+        city_1_trends_set = set([trend['name'] for trend in city_1_trends[0]['trends']])
+        city_2_trends_set = set([trend['name'] for trend in city_2_trends[0]['trends']])
+        
+        common_trends = set.intersection(city_1_trends_set, city_2_trends_set)
+        
+        
+        return render_template("common_trends.html", common_trends = common_trends)    
+        
+    except:
     
-    city_1_trends_set = set([trend['name'] for trend in city_1_trends[0]['trends']])
-    city_2_trends_set = set([trend['name'] for trend in city_2_trends[0]['trends']])
+        return render_template("twitter_trends.html", message="Requested ID does not exist, try another one:" )
+        
+
+############################################################# Keyword Search  
+
+@app.route('/keyword_search')
+def keyword_search():
+
+
+    return render_template("keyword_search.html")
+
+@app.route('/most_common', methods=['POST'])
+def most_common():
     
-    common_trends = set.intersection(city_1_trends_set, city_2_trends_set)
+    keyword = request.form.get('keyword')
+    count = int(request.form.get('count'))   
     
+    results = [status for status in tweepy.Cursor(api.search, q=keyword).items(count)]
     
-    return render_template("common_trends.html", common_trends = common_trends)    
-
-
-##### 
-
-
-
-
-
-
-
+    status_texts = [status._json['text'] for status in results]
+    
+    screen_names = [status._json['user']['screen_name'] 
+                        for status in results
+                            for mention in status._json['entities']['user_mentions']]
+    
+    hashtags = [hashtag['text']
+                            for status in results
+                                for hashtag in status._json['entities']['hashtags']]
+                            
+    words = [ word 
+                    for text in status_texts
+                        for word in text.split() ] 
+    
+    most_common = []                    
+    for entry in [screen_names, hashtags, words]:
+        counter = Counter(entry)
+        most_common = counter.most_common()[:10]    
+        
+        
+    return render_template("most_common.html", most_common = most_common)
 
 
 
