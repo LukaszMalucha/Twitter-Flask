@@ -162,34 +162,34 @@ for entry in [screen_names, hashtags, words]:
 
 ### RETWEET POPULARITY
 
-count = 150
-query = 'Khashoggi'
+# count = 150
+# query = 'Khashoggi'
 
-## get tweets for the search query
+# ## get tweets for the search query
 
-results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
+# results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
 
-min_retweets = 10 ## retweet treshold
+# min_retweets = 10 ## retweet treshold
 
-pop_tweets = [status
-                for status in results
-                    if status._json['retweet_count'] > min_retweets]
+# pop_tweets = [status
+#                 for status in results
+#                     if status._json['retweet_count'] > min_retweets]
 
-## tuple of tweet + retweet count                    
-tweet_tups = [(tweet._json['text'].encode('utf-8'), tweet._json['retweet_count'])
-                for tweet in pop_tweets]
+# ## tuple of tweet + retweet count                    
+# tweet_tups = [(tweet._json['text'].encode('utf-8'), tweet._json['retweet_count'])
+#                 for tweet in pop_tweets]
                 
-## sort descending
-most_popular_tups = sorted(tweet_tups, key=itemgetter(1), reverse=True)[:5]
+# ## sort descending
+# most_popular_tups = sorted(tweet_tups, key=itemgetter(1), reverse=True)[:5]
 
 
-# prettify
-table = PrettyTable(field_names=['Text', 'Retweet Count'])
-for key, val in most_popular_tups:
-    table.add_row([key, val])
-table.max_width['Text'] = 50
-table.align['Text'], table.align['Retweet Count'] = 'l', 'r'  # align the columns
-print(table)
+# # prettify
+# table = PrettyTable(field_names=['Text', 'Retweet Count'])
+# for key, val in most_popular_tups:
+#     table.add_row([key, val])
+# table.max_width['Text'] = 50
+# table.align['Text'], table.align['Retweet Count'] = 'l', 'r'  # align the columns
+# print(table)
 
 # ### TWITTER USER INFO
 

@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% block content %}
+<div class="card text-center" id="main_card">
+
+    <div class="row">
+        <div class="col-md-3 text-center"></div>
+        <div class="col-md-6 text-center">
+            <div class="card text-center" id="dashboard_card">
+                <div class="row">
+                    <div class="col-md-2 text-center"></div>
+                    <div class="col-md-8 text-center">
+                        <br>
+                        <h2>Choose Two Cities</h2>
+                    </div>
+                    <div class="col-md-2 text-center"></div>
+                </div>
+                <div class="row">
+                    <h3 style="color: red">{{ message }} </h3>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-2 text-center">
+
+                    </div>
+                    <div class="col-md-8 text-center">
+                        <div class="row">
+                            <form action="{{url_for('store_tweets')}}" method="POST" class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-city"></i>
+                                        <input id="city_1" name="city_1" type="number" class="validate" required>
+                                        <label for="textarea1">City #1</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-city"></i>
+                                        <input id="city_2" name="city_2" type="number" class="validate" required>
+                                        <label for="textarea1">City #2</label>
+                                    </div>
+                                </div>
+                                <div class="input-field col s12">
+                                    <button class="btn waves-effect waves-light" type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2 text-center"></div>
+
+                </div>
+
+
+                <div class="col-md-3 text-center"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

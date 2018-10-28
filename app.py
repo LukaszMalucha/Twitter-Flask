@@ -40,7 +40,7 @@ api = tweepy.API(auth)
 
 ################################################################### VIEWS ################################
 
-########################################################################### Home
+############################################################## Home
 
 @app.route('/')
 @app.route('/interface')
@@ -49,7 +49,7 @@ def interface():
     return render_template("interface.html")
     
     
-############################################################ Trends Intersection 
+############################################### Trends Intersection 
 
 ## http://www.woeidlookup.com/
 
@@ -86,7 +86,7 @@ def common_trends():
                                message="Requested ID does not exist, try another one:" )
         
 
-################################################################# Keyword Search  
+##################################################### Keyword Search  
 
 @app.route('/keyword_search')
 def keyword_search():
@@ -126,7 +126,7 @@ def most_common():
     
     
 
-############################################################# Retweet popularity    
+################################################ Retweet popularity    
 
 @app.route('/retweet_popularity')
 def retweet_popularity():
@@ -160,6 +160,26 @@ def most_retweets():
     return render_template("most_retweets.html", most_popular_tups = most_popular_tups)
     
     
+########################################################### Acess Twitter Stream    
+    
+    
+@app.route('/twitter_stream')
+def twitter_stream():
+    
+    return render_template("twitter_stream.html")      
+    
+    
+@app.route('/store_tweets', methods=['POST'])
+def store_tweets():
+    
+    
+    
+    
+    
+    
+    
+    return render_template("interface.html", 
+                               message="Tweets have been stored" )     
 
 
 
