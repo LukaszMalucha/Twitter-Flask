@@ -24,20 +24,20 @@ auth.set_access_token(OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 
 api = tweepy.API(auth)
 
-DUB_WOE_ID = 560743
-LON_WOE_ID = 44418
+# DUB_WOE_ID = 560743
+# LON_WOE_ID = 44418
 
 
-# Common Hashatgs
-dub_trends = api.trends_place(DUB_WOE_ID)
-lon_trends = api.trends_place(LON_WOE_ID)
+# # Common Hashatgs
+# dub_trends = api.trends_place(DUB_WOE_ID)
+# lon_trends = api.trends_place(LON_WOE_ID)
 
-dub_trends_set = set([trend['name'] for trend in dub_trends[0]['trends']])
-lon_trends_set = set([trend['name'] for trend in lon_trends[0]['trends']])
+# dub_trends_set = set([trend['name'] for trend in dub_trends[0]['trends']])
+# lon_trends_set = set([trend['name'] for trend in lon_trends[0]['trends']])
 
-common_trends = set.intersection(dub_trends_set, lon_trends_set)
+# common_trends = set.intersection(dub_trends_set, lon_trends_set)
 
-print(dub_trends_set, common_trends)
+# print(dub_trends_set, common_trends)
 
 # ## Get Tweets
 
@@ -63,60 +63,60 @@ print(dub_trends_set, common_trends)
 
 ## Get all tweets for the search query
 
-count = 50
-query = 'Dublin'
+# count = 50
+# query = 'Dublin'
 
-results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
+# results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
 
-status_texts = [status._json['text'] for status in results]
+# status_texts = [status._json['text'] for status in results]
 
-screen_names = [status._json['user']['screen_name'] 
-                    for status in results
-                        for mention in status._json['entities']['user_mentions']]
+# screen_names = [status._json['user']['screen_name'] 
+#                     for status in results
+#                         for mention in status._json['entities']['user_mentions']]
 
 
-hashtags = [hashtag['text']
-                        for status in results
-                            for hashtag in status._json['entities']['hashtags']]
+# hashtags = [hashtag['text']
+#                         for status in results
+#                             for hashtag in status._json['entities']['hashtags']]
                         
 
-words = [ word 
-                for text in status_texts
-                    for word in text.split() ]   
+# words = [ word 
+#                 for text in status_texts
+#                     for word in text.split() ]   
                     
-print(json.dumps(status_texts[0:5], indent=1))           
-print(json.dumps(screen_names[0:5], indent=1))
-print(json.dumps(hashtags[0:5], indent=1))
-print(json.dumps(words[0:5], indent=1))
+# print(json.dumps(status_texts[0:5], indent=1))           
+# print(json.dumps(screen_names[0:5], indent=1))
+# print(json.dumps(hashtags[0:5], indent=1))
+# print(json.dumps(words[0:5], indent=1))
 
 
 
-## Get all tweets for the search query
+# ## Get all tweets for the search query
 
-count = 50
-query = 'Khashoggi'
+# count = 50
+# query = 'Khashoggi'
 
-results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
+# results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
 
-status_texts = [status._json['text'] for status in results]
+# status_texts = [status._json['text'] for status in results]
 
-screen_names = [status._json['user']['screen_name'] 
-                    for status in results
-                        for mention in status._json['entities']['user_mentions']]
+# screen_names = [status._json['user']['screen_name'] 
+#                     for status in results
+#                         for mention in status._json['entities']['user_mentions']]
 
 
-hashtags = [hashtag['text']
-                        for status in results
-                            for hashtag in status._json['entities']['hashtags']]
+# hashtags = [hashtag['text']
+#                         for status in results
+#                             for hashtag in status._json['entities']['hashtags']]
                         
 
-words = [ word 
-                for text in status_texts
-                    for word in text.split() ]   
+# words = [ word 
+#                 for text in status_texts
+#                     for word in text.split() ]   
                     
-for entry in [screen_names, hashtags, words]:
-    counter = Counter(entry)
-    print(counter.most_common()[:10])
+# for entry in [screen_names, hashtags, words]:
+#     counter = Counter(entry)
+#     print(counter.most_common()[:10])
     
     
     
@@ -216,7 +216,7 @@ for entry in [screen_names, hashtags, words]:
 
 keyword_list = ['python', 'javascript', 'php', 'C#']
 
-limit = 100
+limit = 10
 
 class MyStreamListener(StreamListener):
     

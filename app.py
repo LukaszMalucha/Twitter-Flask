@@ -1,10 +1,10 @@
-##### App Utilities
+################################################################## App Utilities
 import os
 from flask_bootstrap import Bootstrap
 from flask import Flask, render_template, current_app, request, redirect, url_for, flash
 
 
-##### Twitter API
+#################################################################### Twitter API
 import os
 import env
 import json
@@ -18,7 +18,7 @@ from operator import itemgetter
 
 
 
-################################################################### APP SETTINGS ###########################
+################################################################### APP SETTINGS ##############################################################
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY") 
@@ -38,7 +38,7 @@ api = tweepy.API(auth)
 
 
 
-################################################################### VIEWS ################################
+################################################################### VIEWS ######################################################################
 
 ############################################################## Home
 
@@ -174,16 +174,50 @@ def store_tweets():
     
     
     
+    keywords = request.form.get('keyword')
+    limit = int(request.form.get('limit'))
+    
+    keyword_list = keywords.split(',')
+    
+    
+    class MyStreamListener(StreamListener):
+    
+        def __init__(self):
+            super(MyStreamListener, self).__init__()
+            self.num_tweets = 0
+            
+        def on_data(self, data):
+            if self.num_tweets < limit: 
+                self.num_tweets += 1
+                try:
+                    with open('tweet_mining.json', 'a') as tweet_file:
+                        tweet_file.write(data)
+                        return True
+                except BaseException as e:
+                    print("Failed %s"%str(e))
+                return True 
+            else:
+                return False
+            
+        def on_error(self, status):
+            print(status)
+            return True
+
+    
+    twitter_stream = Stream(auth, MyStreamListener())
+    twitter_stream.filter(track=keyword_list)
     
     
     
     
-    return render_template("interface.html", 
+    
+    
+    return render_template("try.html", keywords = keywords,
                                message="Tweets have been stored" )     
 
 
 
-################################################################# APP INITIATION ########################
+################################################################# APP INITIATION #############################################################
 
 
 if __name__ == '__main__':

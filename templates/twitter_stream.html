@@ -9,12 +9,9 @@
                     <div class="col-md-2 text-center"></div>
                     <div class="col-md-8 text-center">
                         <br>
-                        <h2>Choose Two Cities</h2>
+                        <h2>Keyword Search</h2>
                     </div>
                     <div class="col-md-2 text-center"></div>
-                </div>
-                <div class="row">
-                    <h3 style="color: red">{{ message }} </h3>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-2 text-center">
@@ -25,14 +22,14 @@
                             <form action="{{url_for('store_tweets')}}" method="POST" class="col s12">
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <i class="fas fa-city"></i>
-                                        <input id="city_1" name="city_1" type="number" class="validate" required>
-                                        <label for="textarea1">City #1</label>
+                                        <i class="fas fa-search"></i>
+                                        <input id="keyword" name="keyword" type="text" class="validate" required>
+                                        <label for="textarea1">Keyword(s)</label>
                                     </div>
                                     <div class="input-field col s12">
                                         <i class="fas fa-city"></i>
-                                        <input id="city_2" name="city_2" type="number" class="validate" required>
-                                        <label for="textarea1">City #2</label>
+                                        <input id="limit" name="limit" type="number" class="validate" required>
+                                        <label for="textarea1">Limit</label>
                                     </div>
                                 </div>
                                 <div class="input-field col s12">
