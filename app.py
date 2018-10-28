@@ -160,7 +160,7 @@ def most_retweets():
     return render_template("most_retweets.html", most_popular_tups = most_popular_tups)
     
     
-########################################################### Acess Twitter Stream    
+########################################### Acess Twitter Stream    
     
     
 @app.route('/twitter_stream')

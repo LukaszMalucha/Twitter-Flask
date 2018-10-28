@@ -25,8 +25,8 @@ html {
     position: relative;
     top: 55px;
     -moz-box-shadow: 0 0 10px #757575;
-    background-image: url('../../static/img/nice.png');
-    background-size: cover
+    background-image: url('../../static/img/nice3.png');
+    background-size: cover;
 }
 
 #page-index {
@@ -123,7 +123,7 @@ h6 {
     top: 0px;
     width: 100%;
     z-index: 300;
-    background: #4e79a7;
+    background: #29abe2;
     border-bottom: none;
     padding-right: 10px;
     box-shadow: none;
@@ -148,7 +148,7 @@ h6 {
     font-size: 32px;
     font-weight: 700;
     line-height: 30px;
-    background: #4e79a7;
+    background: #29abe2;
     border-radius: 15px;
 }
 
