@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+<div class="card text-center" id="main_card">
+
+    <div class="row">
+        <div class="col-md-2 text-center"></div>
+        <div class="col-md-8 text-center">
+            <div class="card text-center" id="dashboard_card">
+                <div class="row">
+                    <div class="col-md-2 text-center"></div>
+                    <div class="col-md-8 text-center">
+                        <br>
+                        <h1>Most retweets</h1>
+                    </div>
+                    <div class="col-md-2 text-center"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 text-center"></div>
+                    <div class="col-md-8 text-center">
+                        <br>
+                        {% for element in most_popular_tups %}
+                        <h1>{{element}}</h1>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-2 text-center"></div>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

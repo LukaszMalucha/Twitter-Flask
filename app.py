@@ -82,10 +82,11 @@ def common_trends():
         
     except:
     
-        return render_template("twitter_trends.html", message="Requested ID does not exist, try another one:" )
+        return render_template("twitter_trends.html", 
+                               message="Requested ID does not exist, try another one:" )
         
 
-############################################################# Keyword Search  
+################################################################# Keyword Search  
 
 @app.route('/keyword_search')
 def keyword_search():
@@ -122,10 +123,47 @@ def most_common():
         
         
     return render_template("most_common.html", most_common = most_common)
+    
+    
+
+############################################################# Retweet popularity    
+
+@app.route('/retweet_popularity')
+def retweet_popularity():
+    
+    return render_template("retweet_popularity.html")    
+    
+    
+@app.route('/most_retweets', methods=['POST'])
+def most_retweets():
+    
+    keyword = request.form.get('keyword')
+    count = int(request.form.get('count'))
+    
+    ## get tweets for the search query
+
+    results = [status for status in tweepy.Cursor(api.search, q=keyword).items(count)]
+    
+    min_retweets = 10 ## retweet treshold
+    
+    pop_tweets = [status
+                    for status in results
+                        if status._json['retweet_count'] > min_retweets]
+    
+    ## tuple of tweet + retweet count                    
+    tweet_tups = [(tweet._json['text'].encode('utf-8'), tweet._json['retweet_count'])
+                    for tweet in pop_tweets]
+                    
+    ## sort descending
+    most_popular_tups = sorted(tweet_tups, key=itemgetter(1), reverse=True)[:5]
+    
+    return render_template("most_retweets.html", most_popular_tups = most_popular_tups)
+    
+    
 
 
 
-################################################################## APP INITIATION ########################
+################################################################# APP INITIATION ########################
 
 
 if __name__ == '__main__':
