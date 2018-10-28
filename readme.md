@@ -1,3 +1,3 @@
 ## Twitter API Interface
 
-Connecting twitter_api with flask
+Connecting twitter_api with flask.
