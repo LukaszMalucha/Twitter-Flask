@@ -55,7 +55,6 @@ html {
     display: block;
     margin: 0;
     font-weight: bold;
-
     font-size: 16px;
 }
 
@@ -298,9 +297,6 @@ h2 {
     margin: 5px;
 }
 
-#card-row {
-    
-}
 
 #dashboard_card {
     float: left;
@@ -308,20 +304,44 @@ h2 {
     width: 290px;
     margin-left: 40px;
     border: 1px solid  #C0C0C0;
+    padding: 0px;
+    
 }
 
 #card-top {
+    box-shadow: none;
+    padding: 5%;
+    height: 80%;
+    margin: 0px;
+    text-align: left;
     
+}
+
+#card-top h3 {
+    font-weight: bold;
 }
 
 #card-bottom {
-    
+    box-shadow: none;
+    height: 20%;
+    margin: 0px;
 }
 
-#canvas {
-    border: 2px solid black;
-    color: black;
+
+#btn-card {
+    color: white;
+    background-color: #6ba546;
+    border: none;
+    width: 60%;
+    height: 80%;
+    display: block;
+    font-weight: bold;
+    font-size: 12px !important; 
+    /*padding: 1%;*/
+    line-height: 400%;
+    margin: auto;
 }
+
 
 #add {
     width: 160px;
