@@ -24,20 +24,20 @@ auth.set_access_token(OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 
 api = tweepy.API(auth)
 
-DUB_WOE_ID = 560743
-LON_WOE_ID = 44418
+# DUB_WOE_ID = 560743
+# LON_WOE_ID = 44418
 
 
-# Common Hashatgs
-dub_trends = api.trends_place(DUB_WOE_ID)
-lon_trends = api.trends_place(LON_WOE_ID)
+# # Common Hashatgs
+# dub_trends = api.trends_place(DUB_WOE_ID)
+# lon_trends = api.trends_place(LON_WOE_ID)
 
-dub_trends_set = set([trend['name'] for trend in dub_trends[0]['trends']])
-lon_trends_set = set([trend['name'] for trend in lon_trends[0]['trends']])
+# dub_trends_set = set([trend['name'] for trend in dub_trends[0]['trends']])
+# lon_trends_set = set([trend['name'] for trend in lon_trends[0]['trends']])
 
-common_trends = set.intersection(dub_trends_set, lon_trends_set)
+# common_trends = set.intersection(dub_trends_set, lon_trends_set)
 
-print(dub_trends_set, common_trends)
+# print(dub_trends_set, common_trends)
 
 # ## Get Tweets
 
@@ -160,29 +160,29 @@ print(dub_trends_set, common_trends)
 # print("Hashtag Diversity: {0}".format(get_lexical_diversity(hashtags)))
 
 
-### RETWEET POPULARITY
+## RETWEET POPULARITY
 
-# count = 150
-# query = 'Khashoggi'
+count = 150
+query = 'python'
 
-# ## get tweets for the search query
+## get tweets for the search query
 
-# results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
+results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
 
-# min_retweets = 10 ## retweet treshold
+min_retweets = 10 ## retweet treshold
 
-# pop_tweets = [status
-#                 for status in results
-#                     if status._json['retweet_count'] > min_retweets]
+pop_tweets = [status
+                for status in results
+                    if status._json['retweet_count'] > min_retweets]
 
-# ## tuple of tweet + retweet count                    
-# tweet_tups = [(tweet._json['text'].encode('utf-8'), tweet._json['retweet_count'])
-#                 for tweet in pop_tweets]
+## tuple of tweet + retweet count                    
+tweet_tups = [[tweet._json['text'].encode('utf-8'), tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
+                for tweet in pop_tweets]
                 
-# ## sort descending
-# most_popular_tups = sorted(tweet_tups, key=itemgetter(1), reverse=True)[:5]
+## sort descending
+most_popular_tups = sorted(tweet_tups, key=itemgetter(1), reverse=True)[:1]
 
-
+print(most_popular_tups)
 # # prettify
 # table = PrettyTable(field_names=['Text', 'Retweet Count'])
 # for key, val in most_popular_tups:

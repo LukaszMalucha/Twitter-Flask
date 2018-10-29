@@ -8,6 +8,7 @@ body {
     margin: 0;
     padding-bottom: 0;
     min-height: 100%;
+    background-color: #e6ecf0;
 }
 
 html {
@@ -264,13 +265,19 @@ h6 {
     background-color: transparent;
 }
 
-#main_card p {
-    color: black;
-    font-size: 40px;
-    font-weight: bold;
-    padding: 17px;
-    margin-bottom: 0px;
-}
+/*#main_card p {*/
+
+/*    color: black;*/
+
+/*    font-size: 40px;*/
+
+/*    font-weight: bold;*/
+
+/*    padding: 17px;*/
+
+/*    margin-bottom: 0px;*/
+
+/*}*/
 
 #main_card h1 {
     color: black;
@@ -343,7 +350,9 @@ h2 {
     margin: auto;
 }
 
-#action-card {}
+#action-card {
+    
+}
 
 #action-card h3 {
     font-size: 22px;
@@ -391,6 +400,43 @@ h2 {
 #btn-tiny:hover {
     background-color: #e6ecf0;
     color: #29abe2;
+}
+
+
+#tweet {
+    width: 468px;
+    min-height: 80px;
+    padding: 15px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+    border-color: #eee #ddd #bbb;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    margin: 10px 5px;
+    padding: 16px;
+}
+
+#tweet p {
+    font-family: Georgia;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 20px;
+}
+
+#tweet a {
+    color: inherit;
+    font-weight: normal;
+    text-decoration: none;
+    outline: 0 none;
+}
+
+#tweet i {
+    font-size: 16px;
+    color: #818286;
 }
 
 /*------------------------------------------------------------------------------

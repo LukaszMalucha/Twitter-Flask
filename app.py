@@ -60,7 +60,7 @@ def twitter_trends():
     return render_template("twitter_trends.html", message=message)
     
     
-@app.route('/common_trends', methods=['POST'])
+@app.route('/common_trends', methods=['GET','POST'])
 def common_trends():
     
     city_1 = request.form.get('city_1')
@@ -145,25 +145,25 @@ def most_retweets():
     
     keyword = request.form.get('keyword')
     count = int(request.form.get('count'))
+    min_retweets = int(request.form.get('retweets'))
     
     ## get tweets for the search query
 
     results = [status for status in tweepy.Cursor(api.search, q=keyword).items(count)]
     
-    min_retweets = 10 ## retweet treshold
     
     pop_tweets = [status
                     for status in results
                         if status._json['retweet_count'] > min_retweets]
     
     ## tuple of tweet + retweet count                    
-    tweet_tups = [(tweet._json['text'].encode('utf-8'), tweet._json['retweet_count'])
+    tweet_list = [[tweet._json['text'], tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
                     for tweet in pop_tweets]
                     
     ## sort descending
-    most_popular_tups = sorted(tweet_tups, key=itemgetter(1), reverse=True)[:5]
+    most_popular_tweets = sorted(tweet_list, key=itemgetter(1), reverse=True)[:count]
     
-    return render_template("most_retweets.html", most_popular_tups = most_popular_tups)
+    return render_template("most_retweets.html", most_popular_tweets = most_popular_tweets)
     
     
 ########################################### Acess Twitter Stream    

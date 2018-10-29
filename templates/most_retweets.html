@@ -1,33 +1,19 @@
 {% extends 'base.html' %} {% block content %}
 <div class="card text-center" id="main_card">
-
-    <div class="row">
-        <div class="col-md-2 text-center"></div>
-        <div class="col-md-8 text-center">
-            <div class="card text-center" id="dashboard_card">
-                <div class="row">
-                    <div class="col-md-2 text-center"></div>
-                    <div class="col-md-8 text-center">
-                        <br>
-                        <h1>Most retweets</h1>
-                    </div>
-                    <div class="col-md-2 text-center"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 text-center"></div>
-                    <div class="col-md-8 text-center">
-                        <br>
-                        {% for element in most_popular_tups %}
-                        <h1>{{element}}</h1>
-                        {% endfor %}
-                    </div>
-                    <div class="col-md-2 text-center"></div>
-                </div>
+    <div class="col-md-4 text-center"></div>
+    <div class="col-md-4 text-center" style="padding-left:6%">
+        <div class="row text-center">
+            {% for element in most_popular_tweets %}
+            <div class="card" id="tweet">
+                <p>{{element[0]}}</p>
+                &mdash; {{element[2]}}
+                <a target="_blank" href="https://twitter.com/">{{element[1]}}</a>
                 <br>
-                <br>
+                <span><h5><i class="fas fa-retweet"></i> {{element[3]}}</h5></span>
             </div>
+            {% endfor %}
         </div>
     </div>
+    <div class="col-md-4 text-center"></div>
 </div>
-
 {% endblock %}
