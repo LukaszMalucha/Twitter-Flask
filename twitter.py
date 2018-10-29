@@ -24,20 +24,20 @@ auth.set_access_token(OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 
 api = tweepy.API(auth)
 
-# DUB_WOE_ID = 560743
-# LON_WOE_ID = 44418
+DUB_WOE_ID = 560743
+LON_WOE_ID = 44418
 
 
-# # Common Hashatgs
-# dub_trends = api.trends_place(DUB_WOE_ID)
-# lon_trends = api.trends_place(LON_WOE_ID)
+# Common Hashatgs
+dub_trends = api.trends_place(DUB_WOE_ID)
+lon_trends = api.trends_place(LON_WOE_ID)
 
-# dub_trends_set = set([trend['name'] for trend in dub_trends[0]['trends']])
-# lon_trends_set = set([trend['name'] for trend in lon_trends[0]['trends']])
+dub_trends_set = set([trend['name'] for trend in dub_trends[0]['trends']])
+lon_trends_set = set([trend['name'] for trend in lon_trends[0]['trends']])
 
-# common_trends = set.intersection(dub_trends_set, lon_trends_set)
+common_trends = set.intersection(dub_trends_set, lon_trends_set)
 
-# print(dub_trends_set, common_trends)
+print(dub_trends_set, common_trends)
 
 # ## Get Tweets
 
@@ -214,33 +214,33 @@ api = tweepy.API(auth)
 
 ### ACCESS TWITTER STREAM 
 
-keyword_list = ['python', 'javascript', 'php', 'C#']
+# keyword_list = ['python', 'javascript', 'php', 'C#']
 
-limit = 10
+# limit = 10
 
-class MyStreamListener(StreamListener):
+# class MyStreamListener(StreamListener):
     
-    def __init__(self):
-        super(MyStreamListener, self).__init__()
-        self.num_tweets = 0
+#     def __init__(self):
+#         super(MyStreamListener, self).__init__()
+#         self.num_tweets = 0
         
-    def on_data(self, data):
-        if self.num_tweets < limit: 
-            self.num_tweets += 1
-            try:
-                with open('tweet_mining.json', 'a') as tweet_file:
-                    tweet_file.write(data)
-                    return True
-            except BaseException as e:
-                print("Failed %s"%str(e))
-            return True 
-        else:
-            return False
+#     def on_data(self, data):
+#         if self.num_tweets < limit: 
+#             self.num_tweets += 1
+#             try:
+#                 with open('tweet_mining.json', 'a') as tweet_file:
+#                     tweet_file.write(data)
+#                     return True
+#             except BaseException as e:
+#                 print("Failed %s"%str(e))
+#             return True 
+#         else:
+#             return False
         
-    def on_error(self, status):
-        print(status)
-        return True
+#     def on_error(self, status):
+#         print(status)
+#         return True
         
         
-twitter_stream = Stream(auth, MyStreamListener())
-twitter_stream.filter(track=keyword_list)
+# twitter_stream = Stream(auth, MyStreamListener())
+# twitter_stream.filter(track=keyword_list)

@@ -39,7 +39,7 @@ html {
 #page-index a {
     text-decoration: none;
     outline: 0;
-    font-size: 10px;
+    /*font-size: 10px;*/
 }
 
 .text-center {
@@ -49,10 +49,10 @@ html {
 .btn,
 .btn-large {
     color: white;
-    background-color: #4e79a7;
+    background-color: #6ba546;
     border: none;
     width: 200px;
-    display: block;
+    /*display: block;*/
     margin: 0;
     font-weight: bold;
     font-size: 16px;
@@ -66,8 +66,8 @@ html {
 .btn-large:focus,
 .btn:hover,
 .btn:focus {
-    background-color: white;
-    color: #4e79a7;
+    background-color: #4b7331;
+    color: white;
 }
 
 
@@ -125,7 +125,7 @@ h6 {
     background: #29abe2;
     border-bottom: none;
     padding-right: 10px;
-    box-shadow: 1px solid rgba(0,0,0,0.25);
+    box-shadow: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .navbar-brand i.large.material-icons {
@@ -294,6 +294,7 @@ h2 {
 #main_card h5 {
     color: black;
     font-size: 14px;
+    color: #546370;
     margin: 5px;
 }
 
@@ -303,9 +304,9 @@ h2 {
     height: 290px;
     width: 290px;
     margin-left: 40px;
-    border: 1px solid  #C0C0C0;
+    border: 1px solid #C0C0C0;
     padding: 0px;
-    
+
 }
 
 #card-top {
@@ -314,10 +315,11 @@ h2 {
     height: 80%;
     margin: 0px;
     text-align: left;
-    
+
 }
 
 #card-top h3 {
+    font-size: 22px;
     font-weight: bold;
 }
 
@@ -336,21 +338,55 @@ h2 {
     height: 80%;
     display: block;
     font-weight: bold;
-    font-size: 12px !important; 
-    /*padding: 1%;*/
+    font-size: 12px !important;
     line-height: 400%;
     margin: auto;
 }
 
+#action-card {}
+
+#action-card h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #546370;
+    text-transform: uppercase;
+}
 
 #add {
     width: 160px;
-    margin-left:  0px !important;
+    margin-left: 0px !important;
     line-height: 56px;
     height: 40px;
 }
 
+#tiny-card {
+    float: left;
+    width: 210px;
+    height: 70px;
+    padding: 5px;
+    margin-left: 30px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.14), 0 4px 2px -3px rgba(0, 0, 0, 0.12), 0 2px 7px 0 rgba(0, 0, 0, 0.2);
+}
 
+#tiny-card h4 {
+    color: black;
+    font-size: 14px;
+
+}
+
+
+#btn-tiny {
+    width: 60%;
+    height: 45%;
+    padding-top: 0px;
+    background-color: #29abe2;
+}
+
+#btn-tiny:hover {
+    background-color: #e6ecf0;
+    color: #29abe2;
+}
 
 /*------------------------------------------------------------------------------
     EDIT & ADD FORMS + TABLE    
@@ -385,8 +421,9 @@ textarea.materialize-textarea {
 }
 
 input[type="text"]:not(.browser-default) {
-       color: black; 
+    color: black;
 }
+
 /*------------------------------------------------------------------------------
     MEDIA QUERIES     
 ------------------------------------------------------------------------------*/
@@ -433,7 +470,7 @@ input[type="text"]:not(.browser-default) {
     #page-index {
         min-height: 1000px;
     }
-    
+
     #dashboard_card {
         height: 240px;
         width: 240px;
@@ -502,7 +539,7 @@ input[type="text"]:not(.browser-default) {
         padding: 16px;
         font-size: 16px;
     }
-    
+
 
 
 
