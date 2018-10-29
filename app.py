@@ -67,29 +67,29 @@ def common_trends():
     city_2 = request.form.get('city_2')
     
     # try:
-    city_1_trends = api.trends_place(city_1)
-    city_2_trends = api.trends_place(city_2)
-    
-    # if city_1_trends and city_2_trends:
+        city_1_trends = api.trends_place(city_1)
+        city_2_trends = api.trends_place(city_2)
         
-    city_1_trends_set = set([trend['name'] for trend in city_1_trends[0]['trends']])
-    city_2_trends_set = set([trend['name'] for trend in city_2_trends[0]['trends']])
-    
-    common_trends = set.intersection(city_1_trends_set, city_2_trends_set)
-    
-    clean_trends = []
-    for trend in common_trends:
-        trend = trend.replace('#','')
-        clean_trends.append(trend)
+        # if city_1_trends and city_2_trends:
+            
+        city_1_trends_set = set([trend['name'] for trend in city_1_trends[0]['trends']])
+        city_2_trends_set = set([trend['name'] for trend in city_2_trends[0]['trends']])
         
-    clean_trends = sorted(clean_trends)
+        common_trends = set.intersection(city_1_trends_set, city_2_trends_set)
+        
+        clean_trends = []
+        for trend in common_trends:
+            trend = trend.replace('#','')
+            clean_trends.append(trend)
+            
+        clean_trends = sorted(clean_trends)
+        
+        return render_template("common_trends.html", clean_trends = clean_trends)    
     
-    return render_template("common_trends.html", clean_trends = clean_trends)    
+    except:
     
-    # except:
-    
-    #     return render_template("twitter_trends.html", 
-    #                           message="Requested ID does not exist, try another one:" )
+        return render_template("twitter_trends.html", 
+                              message="Requested ID does not exist, try another one:" )
         
 
 ##################################################### Keyword Search  
