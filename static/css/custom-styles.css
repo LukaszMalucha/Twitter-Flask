@@ -25,7 +25,7 @@ html {
     position: relative;
     top: 55px;
     -moz-box-shadow: 0 0 10px #757575;
-    background-image: url('../../static/img/nice3.png');
+    background-image: url('../../static/img/nice.png');
     background-size: cover;
 }
 
@@ -126,7 +126,7 @@ h6 {
     background: #29abe2;
     border-bottom: none;
     padding-right: 10px;
-    box-shadow: none;
+    box-shadow: 1px solid rgba(0,0,0,0.25);
 }
 
 .navbar-brand i.large.material-icons {
@@ -298,9 +298,24 @@ h2 {
     margin: 5px;
 }
 
+#card-row {
+    
+}
 
 #dashboard_card {
+    float: left;
+    height: 290px;
+    width: 290px;
+    margin-left: 40px;
     border: 1px solid  #C0C0C0;
+}
+
+#card-top {
+    
+}
+
+#card-bottom {
+    
 }
 
 #canvas {
@@ -398,6 +413,11 @@ input[type="text"]:not(.browser-default) {
     #page-index {
         min-height: 1000px;
     }
+    
+    #dashboard_card {
+        height: 240px;
+        width: 240px;
+    }
 
 
 }
@@ -410,6 +430,7 @@ input[type="text"]:not(.browser-default) {
     #page-index {
         min-height: 800px;
     }
+
 
 
 }
@@ -440,6 +461,7 @@ input[type="text"]:not(.browser-default) {
         padding: 17px;
     }
 
+
     th,
     tr {
         font-size: 12px;
@@ -460,6 +482,7 @@ input[type="text"]:not(.browser-default) {
         padding: 16px;
         font-size: 16px;
     }
+    
 
 
 

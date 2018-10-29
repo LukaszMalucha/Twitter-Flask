@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block content %}
+<div class="card text-center" id="main_card">
+
+    <div class="row">
+        <div class="col-md-2 text-center"></div>
+        <div class="col-md-8 text-center">
+            <div class="card text-center" id="dashboard_card">
+                <div class="row">
+                    <div class="col-md-2 text-center"></div>
+                    <div class="col-md-8 text-center">
+                        <br>
+                        <h1>Keyword Search</h1>
+                    </div>
+                    <div class="col-md-2 text-center"></div>
+                </div>
+                <br>
+                <br>
+                
+                <div class="row text-center">
+                    <div class="col-md-3 text-center">
+                        <a href="{{url_for('twitter_trends')}}" class="waves-effect waves-light btn-large" style="display: inline-block;">Common Trends</a>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-3 text-center">
+                        <a href="{{url_for('keyword_search')}}" class="waves-effect waves-light btn-large" style="display: inline-block;">Keyword Search</a>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-3 text-center">
+                        <a href="{{url_for('retweet_popularity')}}" class="waves-effect waves-light btn-large" style="display: inline-block;">Retweet Popularity</a>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-3 text-center">
+                        <a href="{{url_for('twitter_stream')}}" class="waves-effect waves-light btn-large" style="display: inline-block;">Twitter Stream</a>
+                    </div>
+                </div>
+                <div class="row text-center">
+                </div>
+                <div class="col-md-2 text-center"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
