@@ -352,6 +352,11 @@ h2 {
     text-transform: uppercase;
 }
 
+#action-card h4 {
+    color: #546370;
+    text-transform: uppercase;
+}
+
 #add {
     width: 160px;
     margin-left: 0px !important;
