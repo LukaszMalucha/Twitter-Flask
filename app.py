@@ -49,6 +49,32 @@ def interface():
     return render_template("interface.html")
     
     
+##################################################### Keyword Search  
+
+@app.route('/keyword_search')
+def keyword_search():
+
+
+    return render_template("keyword_search.html")
+
+@app.route('/tweets', methods=['POST'])
+def tweets():
+    
+    keyword = request.form.get('keyword')
+    if keyword[0] != '#':
+        keyword = '#' + keyword 
+    count = int(request.form.get('count'))   
+    
+    results = [status for status in tweepy.Cursor(api.search, q=keyword).items(count)]
+
+
+    tweet_list = [[tweet._json['text'], tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
+                    for tweet in results]
+            
+        
+    return render_template("tweets.html", tweet_list = tweet_list)    
+    
+    
 ############################################### Trends Intersection 
 
 ## http://www.woeidlookup.com/
@@ -92,45 +118,6 @@ def common_trends():
                               message="Requested ID does not exist, try another one:" )
         
 
-##################################################### Keyword Search  
-
-@app.route('/keyword_search')
-def keyword_search():
-
-
-    return render_template("keyword_search.html")
-
-@app.route('/most_common', methods=['POST'])
-def most_common():
-    
-    keyword = request.form.get('keyword')
-    count = int(request.form.get('count'))   
-    
-    results = [status for status in tweepy.Cursor(api.search, q=keyword).items(count)]
-    
-    status_texts = [status._json['text'] for status in results]
-    
-    screen_names = [status._json['user']['screen_name'] 
-                        for status in results
-                            for mention in status._json['entities']['user_mentions']]
-    
-    hashtags = [hashtag['text']
-                            for status in results
-                                for hashtag in status._json['entities']['hashtags']]
-                            
-    words = [ word 
-                    for text in status_texts
-                        for word in text.split() ] 
-    
-    most_common = []                    
-    for entry in [screen_names, hashtags, words]:
-        counter = Counter(entry)
-        most_common = counter.most_common()[:10]    
-        
-        
-    return render_template("most_common.html", most_common = most_common)
-    
-    
 
 ################################################ Retweet popularity    
 

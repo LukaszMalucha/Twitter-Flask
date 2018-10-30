@@ -1,9 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 <div class="card text-center" id="main_card">
-    <div class="col-md-4 text-center"></div>
-    <div class="col-md-4 text-center" style="padding-left:6%">
+    <div class="col-md-12 text-center" style="padding-left:6%">
         <div class="row text-center">
-            {% for element in most_popular_tweets %}
+            {% for element in tweet_list %}
             <div class="card" id="tweet">
                 <p>{{element[0]}}</p>
                 &mdash; {{element[2]}}
@@ -17,6 +16,5 @@
             <a href="{{url_for('retweet_popularity')}}" class="waves-effect waves-light btn-large" style="background-color: #0d4861; d">Return</a>
         </div>
     </div>
-    <div class="col-md-4 text-center"></div>
 </div>
 {% endblock %}

@@ -61,12 +61,24 @@ api = tweepy.API(auth)
 
 
 
-## Get all tweets for the search query
+# Get all tweets for the search query hashtag
 
-# count = 50
-# query = 'Dublin'
+count = 50
+query = '#Dublin'
+if query[0] != '#':
+    query = '#'+'Dublin'
+
+print(query)
 
 # results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
+
+
+# tweet_tups = [[tweet._json['text'].encode('utf-8'), tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
+#                 for tweet in results]
+
+# most_popular_tups = sorted(tweet_tups, key=itemgetter(1), reverse=True)
+# print(most_popular_tups)
+
 
 # status_texts = [status._json['text'] for status in results]
 
@@ -88,6 +100,37 @@ api = tweepy.API(auth)
 # print(json.dumps(screen_names[0:5], indent=1))
 # print(json.dumps(hashtags[0:5], indent=1))
 # print(json.dumps(words[0:5], indent=1))
+
+## RETWEET POPULARITY
+
+# count = 150
+# query = 'python'
+
+# ## get tweets for the search query
+
+# results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
+
+# min_retweets = 10 ## retweet treshold
+
+# pop_tweets = [status
+#                 for status in results
+#                     if status._json['retweet_count'] > min_retweets]
+
+# ## tuple of tweet + retweet count                    
+# tweet_tups = [[tweet._json['text'].encode('utf-8'), tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
+#                 for tweet in pop_tweets]
+                
+# ## sort descending
+# most_popular_tups = sorted(tweet_tups, key=itemgetter(1), reverse=True)[:1]
+
+# print(most_popular_tups)
+# # prettify
+# table = PrettyTable(field_names=['Text', 'Retweet Count'])
+# for key, val in most_popular_tups:
+#     table.add_row([key, val])
+# table.max_width['Text'] = 50
+# table.align['Text'], table.align['Retweet Count'] = 'l', 'r'  # align the columns
+# print(table)
 
 
 
@@ -116,7 +159,7 @@ api = tweepy.API(auth)
                     
 # for entry in [screen_names, hashtags, words]:
 #     counter = Counter(entry)
-#     print(counter.most_common()[:10])
+#     print(counter.tweets()[:10])
     
     
     
@@ -145,7 +188,7 @@ api = tweepy.API(auth)
                     
 # for entry in [screen_names, hashtags, words]:
 #     counter = Counter(entry)
-#     print(counter.most_common()[:10])    
+#     print(counter.tweets()[:10])    
     
 # def get_lexical_diversity(items):
 #     return 1.0*len(set(items))/len(items)
@@ -159,37 +202,6 @@ api = tweepy.API(auth)
 # print("Screen Name Diversity: {0}".format(get_lexical_diversity(screen_names)))
 # print("Hashtag Diversity: {0}".format(get_lexical_diversity(hashtags)))
 
-
-## RETWEET POPULARITY
-
-count = 150
-query = 'python'
-
-## get tweets for the search query
-
-results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
-
-min_retweets = 10 ## retweet treshold
-
-pop_tweets = [status
-                for status in results
-                    if status._json['retweet_count'] > min_retweets]
-
-## tuple of tweet + retweet count                    
-tweet_tups = [[tweet._json['text'].encode('utf-8'), tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
-                for tweet in pop_tweets]
-                
-## sort descending
-most_popular_tups = sorted(tweet_tups, key=itemgetter(1), reverse=True)[:1]
-
-print(most_popular_tups)
-# # prettify
-# table = PrettyTable(field_names=['Text', 'Retweet Count'])
-# for key, val in most_popular_tups:
-#     table.add_row([key, val])
-# table.max_width['Text'] = 50
-# table.align['Text'], table.align['Retweet Count'] = 'l', 'r'  # align the columns
-# print(table)
 
 # ### TWITTER USER INFO
 
