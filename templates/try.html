@@ -1,34 +1,19 @@
 {% extends 'base.html' %} {% block content %}
 <div class="card text-center" id="main_card">
-
-    <div class="row">
-        <div class="col-md-3 text-center"></div>
-        <div class="col-md-6 text-center">
-            <div class="card text-center" id="dashboard_card">
-                <div class="row">
-                    <div class="col-md-2 text-center"></div>
-                    <div class="col-md-8 text-center">
-                        <br>
-                        <h2>Stream</h2>
-                    </div>
-                    <div class="col-md-2 text-center"></div>
-                </div>
-                <div class="row">
-                    <h3 style="color: green">{{ keywords }} </h3>
-                </div>
-                <div class="row text-center">
-                    <div class="col-md-2 text-center">
-
-                    </div>
-                    
-                    <div class="col-md-2 text-center"></div>
-
-                </div>
-
-
-                <div class="col-md-3 text-center"></div>
-
+    <div class="col-md-12 text-center" style="padding-left:6%">
+        <div class="row text-center">
+            {% for element in tweet_list %}
+            <div class="card" id="tweet">
+                <p>{{element[0]}}</p>
+                &mdash; {{element[2]}}
+                <a target="_blank" href="https://twitter.com/">{{element[1]}}</a>
+                <br>
+                <span><h5><i class="fas fa-retweet"></i> {{element[3]}}</h5></span>
             </div>
+            {% endfor %}
+        </div>
+        <div class="row text-center">
+            <a href="{{url_for('retweet_popularity')}}" class="waves-effect waves-light btn-large" style="background-color: #0d4861; d">Return</a>
         </div>
     </div>
 </div>

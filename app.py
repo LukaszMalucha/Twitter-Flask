@@ -1,8 +1,13 @@
 ################################################################## App Utilities
 import os
 from flask_bootstrap import Bootstrap
-from flask import Flask, render_template, current_app, request, redirect, url_for, flash
+from flask import Flask, render_template, current_app, request, redirect, url_for, flash, session
 
+
+####################################################################### Mongo DB
+
+from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
 
 #################################################################### Twitter API
 import os
@@ -23,6 +28,12 @@ from operator import itemgetter
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY") 
 Bootstrap(app)
+
+### Mongo DB
+
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME") 
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI") 
+mongo = PyMongo(app)
 
 ### Twitter Authentication
 
@@ -70,12 +81,27 @@ def tweets():
 
     tweet_list = [[tweet._json['text'], tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
                     for tweet in results]
+                    
+    session['tweet_list'] = tweet_list               
             
         
     return render_template("tweets.html", tweet_list = tweet_list)    
     
     
-############################################### Trends Intersection 
+@app.route('/upload_tweets', methods=['GET','POST'])
+def upload_tweets():
+    
+    ### TO BE FIXED
+    tweet_list = session['tweet_list'] 
+    tweet_dict = {}
+    for l in tweet_list:
+        tweet_dict[l[0]] = l[1:]
+    harvest_tweets=mongo.db.harvest_tweets
+    harvest_tweets.insert_many(tweet_dict)
+
+    return render_template("try.html", tweet_list = tweet_list) 
+    
+##########################################City Trends Intersection 
 
 ## http://www.woeidlookup.com/
 
