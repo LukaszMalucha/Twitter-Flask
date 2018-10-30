@@ -66,7 +66,7 @@ def common_trends():
     city_1 = request.form.get('city_1')
     city_2 = request.form.get('city_2')
     
-    # try:
+    try:
         city_1_trends = api.trends_place(city_1)
         city_2_trends = api.trends_place(city_2)
         
@@ -209,15 +209,11 @@ def store_tweets():
             print(status)
             return True
 
-    
+    ### ADD WAIT TIMER
     twitter_stream = Stream(auth, MyStreamListener())
     twitter_stream.filter(track=keyword_list)
     
-    
-    
-    
-    
-    
+ 
     return render_template("try.html", keywords = keywords,
                                message="Tweets have been stored" )     
 
