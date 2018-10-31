@@ -1,18 +1,18 @@
 {% extends 'base.html' %} {% block content %}
 <div class="card" id="main_card">
 
-    <br>
+    <br><br>
     <div class="col-md-12 text-left">
         <div class="row text left">
             <h1>Twitter Analytics:</h1>
         </div>
         <br>
     </div>
-    <div class="col-md-12 text-left">
+    <div class="col-md-12 text-left" style="padding-left:4%">
         <div class="row text left">
             <div class="card" id="dashboard_card">
                 <div class="card" id="card-top">
-                    <span><h3>Keyword Search</h3></span>
+                    <span><h3>Hashtag Analysis</h3></span>
                     <br>
                     <span><h5>Lorem ipsum dolor sit amet, consecte adipisicing elit.Porro, vero. Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, corrupti.dolor sit amet, consectetur adipisicing elit. Porro, vero.
                                     </h5></span>
@@ -20,7 +20,7 @@
 
                 </div>
                 <div class="card" id="card-bottom">
-                    <a href="{{url_for('keyword_search')}}" class="waves-effect waves-light btn-large" id="btn-card">Keyword Search</a>
+                    <a href="{{url_for('keyword_search')}}" class="waves-effect waves-light btn-large" id="btn-card">Hashtag Analysis</a>
                 </div>
             </div>
             <div class="card" id="dashboard_card">
@@ -38,9 +38,11 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12 text-left">
+    <div class="col-md-12 text-left" style="padding-left:4%">
         <div class="row text left"></div>
-        
+    </div>
+    <div class="col-md-12 text-left" style="padding-left:4%">
+        <div class="row text left"></div>
     </div>
     <div class="col-md-12 text-left">
         <div class="row text left">
@@ -48,43 +50,45 @@
         </div>
         <br>
     </div>
-    <div class="col-md-12 text-left">
-        <div class="card" id="dashboard_card">
-            <div class="card" id="card-top">
-                <span><h3>Tale of Two Cities</h3></span>
-                <br>
-                <span><h5>Find out what is currently trending in two chosen locations. Specify woe_id and find out common trends.
+    <div class="col-md-12 text-left" style="padding-left:4%">
+        <div class="row text left">
+            <div class="card" id="dashboard_card">
+                <div class="card" id="card-top">
+                    <span><h3>Tale of Two Cities</h3></span>
+                    <br>
+                    <span><h5>Find out what is currently trending in two chosen locations. Specify woe_id and find out common trends.
                                     </h5></span>
-                <br>
+                    <br>
 
+                </div>
+                <div class="card" id="card-bottom">
+                    <a href="{{url_for('twitter_trends')}}" class="waves-effect waves-light btn-large" id="btn-card">Common Trends</a>
+                </div>
             </div>
-            <div class="card" id="card-bottom">
-                <a href="{{url_for('twitter_trends')}}" class="waves-effect waves-light btn-large" id="btn-card">Common Trends</a>
-            </div>
-        </div>
-        <div class="card" id="dashboard_card">
-            <div class="card" id="card-top">
-                <span><h3>Popular Retweets</h3></span>
-                <br>
-                <span><h5>Lorem ipsum dolor sit amet, consecte adipisicing elit.Porro,  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est voluptas unde dolore, debitis, qui nihil.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, vero.</h5></span>
-                <br>
+            <div class="card" id="dashboard_card">
+                <div class="card" id="card-top">
+                    <span><h3>Popular Retweets</h3></span>
+                    <br>
+                    <span><h5>Lorem ipsum dolor sit amet, consecte adipisicing elit.Porro,  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est voluptas unde dolore, debitis, qui nihil.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, vero.</h5></span>
+                    <br>
 
+                </div>
+                <div class="card" id="card-bottom">
+                    <a href="{{url_for('retweet_popularity')}}" class="waves-effect waves-light btn-large" id="btn-card">Retweets</a>
+                </div>
             </div>
-            <div class="card" id="card-bottom">
-                <a href="{{url_for('retweet_popularity')}}" class="waves-effect waves-light btn-large" id="btn-card">Retweets</a>
-            </div>
-        </div>
-        <div class="card" id="dashboard_card">
-            <div class="card" id="card-top">
-                <span><h3>API Search</h3></span>
-                <br>
-                <span><h5>Lorem ipsum dolor sit amet, consecte adipisicing elit.Porro, vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, vero.
+            <div class="card" id="dashboard_card">
+                <div class="card" id="card-top">
+                    <span><h3>API Search</h3></span>
+                    <br>
+                    <span><h5>Lorem ipsum dolor sit amet, consecte adipisicing elit.Porro, vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, vero.
                                     </h5></span>
-                <br>
+                    <br>
 
-            </div>
-            <div class="card" id="card-bottom">
-                <a href="{{url_for('twitter_trends')}}" class="waves-effect waves-light btn-large" id="btn-card">In progress</a>
+                </div>
+                <div class="card" id="card-bottom">
+                    <a href="{{url_for('twitter_trends')}}" class="waves-effect waves-light btn-large" id="btn-card">In progress</a>
+                </div>
             </div>
         </div>
     </div>
