@@ -2,13 +2,10 @@
 <div class="card text-center" id="main_card">
     <div class="col-md-12 text-center" style="padding-left:6%">
         <div class="row text-center">
-            {% for element in tweet_list %}
+            {% for element in data %}
             <div class="card" id="tweet">
-                <p>{{element[0]}}</p>
-                &mdash; {{element[2]}}
-                <a target="_blank" href="https://twitter.com/">{{element[1]}}</a>
-                <br>
-                <span><h5><i class="fas fa-retweet"></i> {{element[3]}}</h5></span>
+                <p>{{element}}</p>
+                
             </div>
             {% endfor %}
         </div>

@@ -51,6 +51,8 @@ api = tweepy.API(auth)
 
 ################################################################### VIEWS ######################################################################
 
+
+
 ############################################################## Home
 
 @app.route('/')
@@ -58,6 +60,7 @@ api = tweepy.API(auth)
 def interface():
     
     return render_template("interface.html")
+    
     
     
 ##################################################### Keyword Search  
@@ -75,8 +78,10 @@ def tweets():
     keyword = request.form.get('keyword')
     if keyword[0] != '#':
         keyword = '#' + keyword 
-    count = int(request.form.get('count'))   
+    count = int(request.form.get('count'))  
     
+    
+    tweet_data = [] 
     for tweet in tweepy.Cursor(api.search, q=keyword).items(count):
         data = {}
         data['text'] = tweet.text
@@ -84,32 +89,30 @@ def tweets():
         data['created_at'] = tweet.created_at
         data['location'] = tweet.user.location
         data['retweet_count'] = tweet.retweet_count
-        harvest_tweets.insert(data)
+        tweet_data.append(data)
     
-    
+    session['tweet_data'] = tweet_data
     
     results = [status for status in tweepy.Cursor(api.search, q=keyword).items(count)]
     tweet_list = [[tweet._json['text'], tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
                     for tweet in results]
-                    
-    session['tweet_list'] = tweet_list               
-            
+              
         
     return render_template("tweets.html", tweet_list = tweet_list)    
     
     
 @app.route('/upload_tweets', methods=['GET','POST'])
 def upload_tweets():
+    harvest_tweets=mongo.db.harvest_tweets
     
-    # ### TO BE FIXED
-    tweet_list = session['tweet_list'] 
-    # tweet_dict = {}
-    # for l in tweet_list:
-    #     tweet_dict[l[0]] = l[1:]
-    # harvest_tweets=mongo.db.harvest_tweets
-    # harvest_tweets.insert_many(tweet_dict)
+    tweet_data = session['tweet_data'] 
 
-    return render_template("try.html", tweet_list = tweet_list) 
+    for tweet in tweet_data:
+        harvest_tweets.insert(tweet)
+
+    return render_template("try.html", tweet_data = tweet_data) 
+    
+    
     
 ##########################################City Trends Intersection 
 
@@ -188,6 +191,7 @@ def most_retweets():
     
     return render_template("most_retweets.html", most_popular_tweets = most_popular_tweets)
     
+  
     
 ########################################### Acess Twitter Stream    
     
