@@ -71,14 +71,24 @@ def keyword_search():
 @app.route('/tweets', methods=['POST'])
 def tweets():
     
+    harvest_tweets=mongo.db.harvest_tweets
     keyword = request.form.get('keyword')
     if keyword[0] != '#':
         keyword = '#' + keyword 
     count = int(request.form.get('count'))   
     
+    for tweet in tweepy.Cursor(api.search, q=keyword).items(count):
+        data = {}
+        data['text'] = tweet.text
+        data['hashtag'] = keyword
+        data['created_at'] = tweet.created_at
+        data['location'] = tweet.user.location
+        data['retweet_count'] = tweet.retweet_count
+        harvest_tweets.insert(data)
+    
+    
+    
     results = [status for status in tweepy.Cursor(api.search, q=keyword).items(count)]
-
-
     tweet_list = [[tweet._json['text'], tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
                     for tweet in results]
                     
@@ -91,13 +101,13 @@ def tweets():
 @app.route('/upload_tweets', methods=['GET','POST'])
 def upload_tweets():
     
-    ### TO BE FIXED
+    # ### TO BE FIXED
     tweet_list = session['tweet_list'] 
-    tweet_dict = {}
-    for l in tweet_list:
-        tweet_dict[l[0]] = l[1:]
-    harvest_tweets=mongo.db.harvest_tweets
-    harvest_tweets.insert_many(tweet_dict)
+    # tweet_dict = {}
+    # for l in tweet_list:
+    #     tweet_dict[l[0]] = l[1:]
+    # harvest_tweets=mongo.db.harvest_tweets
+    # harvest_tweets.insert_many(tweet_dict)
 
     return render_template("try.html", tweet_list = tweet_list) 
     

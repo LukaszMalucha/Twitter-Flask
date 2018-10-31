@@ -63,7 +63,7 @@ api = tweepy.API(auth)
 
 # Get all tweets for the search query hashtag
 
-count = 50
+count = 5
 query = '#Dublin'
 if query[0] != '#':
     query = '#'+'Dublin'
@@ -73,11 +73,11 @@ if query[0] != '#':
 results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
 
 
-tweet_tups = [[tweet._json['text'].encode('utf-8'), tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
-                for tweet in results]
+# tweet_tups = [[tweet._json['text'], tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
+#                 for tweet in results]
 
-most_popular_tups = sorted(tweet_tups, key=itemgetter(1), reverse=True)
-print(most_popular_tups)
+# most_popular_tups = sorted(tweet_tups, key=itemgetter(1), reverse=True)
+# print(most_popular_tups)
 
 
 status_texts = [status._json['text'] for status in results]
@@ -96,10 +96,16 @@ words = [ word
                 for text in status_texts
                     for word in text.split() ]   
                     
-print(json.dumps(status_texts[0:5], indent=1))           
-print(json.dumps(screen_names[0:5], indent=1))
-print(json.dumps(hashtags[0:5], indent=1))
-print(json.dumps(words[0:5], indent=1))
+tweet_list = [[tweet._json['text'], tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
+                    for tweet in results]                    
+                    
+print(tweet_list)                    
+                    
+                    
+# print(json.dumps(status_texts[0:5], indent=1))           
+# print(json.dumps(screen_names[0:5], indent=1))
+# print(json.dumps(hashtags[0:5], indent=1))
+# print(json.dumps(words[0:5], indent=1))
 
 ## RETWEET POPULARITY
 
