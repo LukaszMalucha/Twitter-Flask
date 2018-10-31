@@ -68,38 +68,38 @@ query = '#Dublin'
 if query[0] != '#':
     query = '#'+'Dublin'
 
-print(query)
+# print(query)
 
-# results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
-
-
-# tweet_tups = [[tweet._json['text'].encode('utf-8'), tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
-#                 for tweet in results]
-
-# most_popular_tups = sorted(tweet_tups, key=itemgetter(1), reverse=True)
-# print(most_popular_tups)
+results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
 
 
-# status_texts = [status._json['text'] for status in results]
+tweet_tups = [[tweet._json['text'].encode('utf-8'), tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
+                for tweet in results]
 
-# screen_names = [status._json['user']['screen_name'] 
-#                     for status in results
-#                         for mention in status._json['entities']['user_mentions']]
+most_popular_tups = sorted(tweet_tups, key=itemgetter(1), reverse=True)
+print(most_popular_tups)
 
 
-# hashtags = [hashtag['text']
-#                         for status in results
-#                             for hashtag in status._json['entities']['hashtags']]
+status_texts = [status._json['text'] for status in results]
+
+screen_names = [status._json['user']['screen_name'] 
+                    for status in results
+                        for mention in status._json['entities']['user_mentions']]
+
+
+hashtags = [hashtag['text']
+                        for status in results
+                            for hashtag in status._json['entities']['hashtags']]
                         
 
-# words = [ word 
-#                 for text in status_texts
-#                     for word in text.split() ]   
+words = [ word 
+                for text in status_texts
+                    for word in text.split() ]   
                     
-# print(json.dumps(status_texts[0:5], indent=1))           
-# print(json.dumps(screen_names[0:5], indent=1))
-# print(json.dumps(hashtags[0:5], indent=1))
-# print(json.dumps(words[0:5], indent=1))
+print(json.dumps(status_texts[0:5], indent=1))           
+print(json.dumps(screen_names[0:5], indent=1))
+print(json.dumps(hashtags[0:5], indent=1))
+print(json.dumps(words[0:5], indent=1))
 
 ## RETWEET POPULARITY
 
