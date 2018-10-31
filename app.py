@@ -63,13 +63,13 @@ def interface():
     
     
     
-##################################################### Keyword Search  
+##################################################### Hashtag Search  
 
-@app.route('/keyword_search')
-def keyword_search():
+@app.route('/hashtag_search')
+def hashtag_search():
 
 
-    return render_template("keyword_search.html")
+    return render_template("hashtag_search.html")
 
 @app.route('/tweets', methods=['POST'])
 def tweets():
