@@ -92,13 +92,13 @@ def tweets():
             harvest_tweets.insert(data)
         except:
             pass
-    
+
     
     results = [status for status in tweepy.Cursor(api.search, q=keyword).items(count)]
+    
     tweet_list = [[tweet._json['text'], tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
                     for tweet in results]
-              
-        
+
     return render_template("tweets.html", tweet_list = tweet_list)    
     
     
