@@ -80,8 +80,7 @@ def tweets():
         keyword = '#' + keyword 
     count = int(request.form.get('count'))  
     
-    
-    tweet_data = [] 
+ 
     for tweet in tweepy.Cursor(api.search, q=keyword).items(count):
         data = {}
         data['text'] = tweet.text
@@ -89,9 +88,11 @@ def tweets():
         data['created_at'] = tweet.created_at
         data['location'] = tweet.user.location
         data['retweet_count'] = tweet.retweet_count
-        tweet_data.append(data)
+        try:
+            harvest_tweets.insert(data)
+        except:
+            pass
     
-    session['tweet_data'] = tweet_data
     
     results = [status for status in tweepy.Cursor(api.search, q=keyword).items(count)]
     tweet_list = [[tweet._json['text'], tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
@@ -101,16 +102,12 @@ def tweets():
     return render_template("tweets.html", tweet_list = tweet_list)    
     
     
-@app.route('/upload_tweets', methods=['GET','POST'])
-def upload_tweets():
-    harvest_tweets=mongo.db.harvest_tweets
+# @app.route('/view_tweets/<tweet_list>', methods=['GET','POST'])
+# def view_tweets(tweet_list):
     
-    tweet_data = session['tweet_data'] 
+#     tweet_data = tweet_list
 
-    for tweet in tweet_data:
-        harvest_tweets.insert(tweet)
-
-    return render_template("try.html", tweet_data = tweet_data) 
+#     return render_template("try.html", tweet_data = tweet_data) 
     
     
     
