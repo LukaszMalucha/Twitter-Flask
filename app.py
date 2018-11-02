@@ -102,13 +102,6 @@ def tweets():
     return render_template("tweets.html", tweet_list = tweet_list)    
     
     
-# @app.route('/view_tweets/<tweet_list>', methods=['GET','POST'])
-# def view_tweets(tweet_list):
-    
-#     tweet_data = tweet_list
-
-#     return render_template("try.html", tweet_data = tweet_data) 
-    
     
     
 ########################################## City Trends Intersection 
