@@ -1,23 +1,41 @@
 {% extends 'base.html' %} {% block content %}
 <div class="card text-center" id="main_card">
     <div class="row">
-        <img src="static/img//etl/1.png"  style="width:1000px;height:80px;">
+        <img src="{{url_for('static', filename='img/etl/2.png')}}" style="width:1000px;height:80px;">
     </div>
     <br><br>
-    <div class="col-md-2 text-center"></div>
-    <div class="col-md-8 text-center">
-        <div class="row text-center">
-            <h1>Tweet Texts</h1>
+    <div class="row">
+        <div class="col-md-5 text-center">
+            <div class="row text-center">
+                <h1>Original Tweet</h1>
+            </div>
+            <div class="row text-center">
+                <div class="card text-center" id="table_card">
+                    <table style="width:100%">
+                        {% for element in text %}
+                        <tr>
+                            <td>{{ element }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="row text-center">
-            <div class="card text-center" id="table_card">
-                <table style="width:100%">
-                    {% for element in text %}
-                    <tr>
-                        <td>{{ element }}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
+        <div class="col-md-2 text-center"></div>
+        <div class="col-md-5 text-center">
+            <div class="row text-center">
+                <h1>After Text Processing</h1>
+            </div>
+            <div class="row text-center">
+                <div class="card text-center" id="table_card">
+                    <table style="width:100%">
+                        {% for element in corpus %}
+                        <tr>
+                            <td>{{ element }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -27,11 +45,9 @@
             <a href="{{url_for('hashtag_search')}}" class="waves-effect waves-light btn-large" style="background-color: #0d4861">Back to Search</a>
         </div>
         <div class="col-md-2 text-center">
-
+            <a href="" class="waves-effect waves-light btn-large" style="background-color: #6ba546">Load to DB</a>
         </div>
         <div class="col-md-4 text-center"></div>
     </div>
-</div>
-<div class="col-md-2 text-center"></div>
 </div>
 {% endblock %}

@@ -24,7 +24,17 @@ from operator import itemgetter
 
 ################################################################## Data Analysis
 
-import pandas as pd
+import re
+
+## get rid of irrelevant and stemming words:
+import nltk   
+nltk.download('stopwords')          ## stopwords list
+from nltk.corpus import stopwords 
+
+## getting the root of every word (stemming):
+from nltk.stem.porter import PorterStemmer
+ps = PorterStemmer()
+
 
 
 ################################################################### APP SETTINGS ##############################################################
@@ -110,23 +120,23 @@ def data_transform(hashtag):
     
     hashtag_tweets = mongo.db.harvest_tweets.find({"hashtag": hashtag})
     
-    text = []
-    created_at = []
-    retweet_count = []
-    for element in hashtag_tweets:
-        text.append(element['text'])
-        created_at.append(element['created_at'])
-        retweet_count.append(element['retweet_count'])
+    text = [element['text'] for element in hashtag_tweets]
+    
+    corpus = []
+    for i in range(0,len(text)):
+            tweet = re.sub('[^a-zA-Z]',' ',text[i])    ## all the indexes
+            tweet = tweet.lower()
+            tweet = tweet.split() 
+            ps = PorterStemmer()
+            tweet = [ps.stem(word) for word in tweet if not word in set(stopwords.words('english'))]
+            tweet = ' '.join(tweet)
+            corpus.append(tweet)
 
-    return render_template("data_transform.html", text = text,
-                                       created_at = created_at,
-                                       retweet_count = retweet_count)
+
+    return render_template("data_transform.html", text = text, corpus = corpus)
     
     
-    
-    
-    
-    
+
     
 ########################################## City Trends Intersection 
 
