@@ -95,16 +95,7 @@ label {
     font-size: 12px;
 }
 
-input[type="number"]:focus:not([readonly]) {
-    border-bottom: 1px solid black;
-    box-shadow: 0 1px 0 0 black;
-}
 
-input[type="number"].valid,
-input[type="number"]:focus.valid {
-    border-bottom: 1px solid #8B0000;
-    box-shadow: 0 1px 0 0 #8B0000;
-}
 
 
 
@@ -279,7 +270,7 @@ h6 {
 /*}*/
 
 #main_card h1 {
-    color: #546370;
+    color: #434f59;
     font-weight: bold;
     font-size: 30px;
     margin-top: 0px;
@@ -440,6 +431,18 @@ h2 {
     color: #818286;
 }
 
+
+#table_card {
+    padding: 5px;
+    max-height: 600px;
+    overflow: auto;
+}
+
+#table_card h2 {
+    font-weight: bold;
+    
+}
+
 /*------------------------------------------------------------------------------
     EDIT & ADD FORMS + TABLE    
 ------------------------------------------------------------------------------*/
@@ -459,9 +462,22 @@ textarea {
     color: white;
 }
 
-th,
+input[type="number"]:focus:not([readonly]) {
+    border-bottom: 1px solid black;
+    box-shadow: 0 1px 0 0 black;
+}
+
+input[type="number"].valid,
+input[type="number"]:focus.valid {
+    border-bottom: 1px solid #8B0000;
+    box-shadow: 0 1px 0 0 #8B0000;
+}
+
+th,td,
 tr {
     color: black;
+    height: 28px;
+    padding-left: 5px;
 }
 
 textarea.materialize-textarea {

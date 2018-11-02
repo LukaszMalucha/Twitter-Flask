@@ -22,6 +22,10 @@ from prettytable import PrettyTable
 from operator import itemgetter
 
 
+################################################################## Data Analysis
+
+import pandas as pd
+
 
 ################################################################### APP SETTINGS ##############################################################
 
@@ -63,7 +67,7 @@ def interface():
     
     
     
-##################################################### Hashtag Search  
+##################################################### Hashtag Analysis
 
 @app.route('/hashtag_search')
 def hashtag_search():
@@ -86,7 +90,6 @@ def tweets():
         data['text'] = tweet.text
         data['hashtag'] = keyword
         data['created_at'] = tweet.created_at
-        data['location'] = tweet.user.location
         data['retweet_count'] = tweet.retweet_count
         try:
             harvest_tweets.insert(data)
@@ -99,7 +102,28 @@ def tweets():
     tweet_list = [[tweet._json['text'], tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
                     for tweet in results]
 
-    return render_template("tweets.html", tweet_list = tweet_list)    
+    return render_template("tweets.html", tweet_list = tweet_list, keyword = keyword)    
+    
+    
+@app.route('/data_transform/<hashtag>', methods=['GET', 'POST'])
+def data_transform(hashtag):  
+    
+    hashtag_tweets = mongo.db.harvest_tweets.find({"hashtag": hashtag})
+    
+    text = []
+    created_at = []
+    retweet_count = []
+    for element in hashtag_tweets:
+        text.append(element['text'])
+        created_at.append(element['created_at'])
+        retweet_count.append(element['retweet_count'])
+
+    return render_template("data_transform.html", text = text,
+                                       created_at = created_at,
+                                       retweet_count = retweet_count)
+    
+    
+    
     
     
     
