@@ -5,10 +5,21 @@
             <div class="col-md-2 text-center"></div>
             <div class="col-md-8 text-center">
                 <div class="card text-center" id="table_card">
-                    <h2>Tweet Text</h2>
+                    <h2>Mongo Hashtags</h2>
                     <br>
                     <table style="width:100%">
                         {% for element in mongo_hashtags %}
+                        <tr>
+                            <td>{{ element }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="card text-center" id="table_card">
+                    <h2>SQLite Hashtags</h2>
+                    <br>
+                    <table style="width:100%">
+                        {% for element in sqlite_hashtags %}
                         <tr>
                             <td>{{ element }}</td>
                         </tr>

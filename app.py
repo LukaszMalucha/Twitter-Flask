@@ -183,9 +183,11 @@ def manage_database():
     mongo_hashtags = mongo.db.harvest_tweets.distinct("hashtag")
     
     
-    tweets = Tweets.query.all()
+    sqlite_hashtags = db.session.query(Tweets.hashtag.distinct())
     
-    return render_template("try.html", tweets = tweets, mongo_hashtags = mongo_hashtags)
+    return render_template("try.html", tweets = tweets, 
+                                       mongo_hashtags = mongo_hashtags, 
+                                       sqlite_hashtags = sqlite_hashtags)
 
   
   
