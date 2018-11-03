@@ -32,7 +32,7 @@ import re
 
 ## get rid of irrelevant and stemming words:
 import nltk   
-nltk.download('stopwords')          ## stopwords list
+# nltk.download('stopwords')          ## stopwords list
 from nltk.corpus import stopwords 
 
 ## getting the root of every word (stemming):
@@ -78,6 +78,11 @@ class Tweets(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
     hashtag = db.Column('hashtag', db.Unicode)
     tweet = db.Column('tweet', db.Unicode)
+    
+    # def __init__(self, id, hashtag, tweet):
+    #     self.id = id
+    #     self.hashtag = hashtag
+    #     self.tweet = tweet
 
 
 
@@ -97,7 +102,7 @@ def interface():
     
     
     
-##################################################### Hashtag Analysis
+##################################################### Hashtag Search
 
 @app.route('/hashtag_search')
 def hashtag_search():
@@ -140,6 +145,7 @@ def data_transform(hashtag):
     
     hashtag_tweets = mongo.db.harvest_tweets.find({"hashtag": hashtag})
     
+    
     text = [element['text'] for element in hashtag_tweets]
     
     corpus = []
@@ -151,14 +157,35 @@ def data_transform(hashtag):
             tweet = [ps.stem(word) for word in tweet if not word in set(stopwords.words('english'))]
             tweet = ' '.join(tweet)
             corpus.append(tweet)
+            tweet_load = Tweets(hashtag = hashtag, tweet = tweet)
+            db.session.add(tweet_load)
+            db.session.commit()
 
 
-    return render_template("data_transform.html", text = text, corpus = corpus)
+    return render_template("data_transform.html", text = text, corpus = corpus, hashtag = hashtag)
     
-@app.route('/sqlite', methods=['GET', 'POST'])
-def sqlite():      
+@app.route('/data_load/<hashtag>', methods=['GET', 'POST'])
+def data_load(hashtag): 
     
-    return render_template("try.html")
+    hashtag_tweets =  Tweets.query.filter_by(hashtag = hashtag)
+    
+
+    return render_template("data_load.html", hashtag_tweets = hashtag_tweets)
+    
+    
+    
+###################################################### Database Management   
+    
+    
+@app.route('/manage_database', methods=['GET', 'POST'])
+def manage_database(): 
+    
+    mongo_hashtags = mongo.db.harvest_tweets.distinct("hashtag")
+    
+    
+    tweets = Tweets.query.all()
+    
+    return render_template("try.html", tweets = tweets, mongo_hashtags = mongo_hashtags)
 
   
   

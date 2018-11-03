@@ -476,8 +476,9 @@ input[type="number"]:focus.valid {
 th,td,
 tr {
     color: black;
-    height: 28px;
+    height: 36px;
     padding-left: 5px;
+    font-size: 12px
 }
 
 textarea.materialize-textarea {
