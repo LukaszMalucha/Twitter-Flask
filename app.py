@@ -9,6 +9,10 @@ from flask import Flask, render_template, current_app, request, redirect, url_fo
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
+########################################################################## MySQL
+
+from flask_sqlalchemy import SQLAlchemy
+
 #################################################################### Twitter API
 import os
 import env
@@ -49,6 +53,11 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI") 
 mongo = PyMongo(app)
 
+### SQLite
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tweets.db'
+db = SQLAlchemy(app)
+
 ### Twitter Authentication
 
 CONSUMER_KEY = os.environ.get("CONSUMER_KEY") 
@@ -60,6 +69,17 @@ auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 
 api = tweepy.API(auth)
+
+
+#### SQLite Classes
+
+class Tweets(db.Model):
+    __tablename__ = 'tweets'
+    id = db.Column('id', db.Integer, primary_key=True)
+    hashtag = db.Column('hashtag', db.Unicode)
+    tweet = db.Column('tweet', db.Unicode)
+
+
 
 
 
@@ -135,8 +155,13 @@ def data_transform(hashtag):
 
     return render_template("data_transform.html", text = text, corpus = corpus)
     
+@app.route('/sqlite', methods=['GET', 'POST'])
+def sqlite():      
     
+    return render_template("try.html")
 
+  
+  
     
 ########################################## City Trends Intersection 
 
