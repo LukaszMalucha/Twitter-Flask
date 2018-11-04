@@ -25,31 +25,30 @@ auth.set_access_token(OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 api = tweepy.API(auth)
 
 
-# trends1 = api.trends_place(1)
+trends1 = api.trends_place(1)
 
-# data = trends1[0] 
-# trends = data['trends']
+data = trends1[0] 
+trends = data['trends']
 
-# names = [trend['name'] for trend in trends]
-# trendsName = ' '.join(names)
-# print(trendsName)
+names = [trend['name'] for trend in trends]
+trendsName = ' '.join(names)
+print(trendsName)
 
 
 # DUB_WOE_ID = 560743
 # LON_WOE_ID = 44418
 
 
-# Common Hashatgs
-us_trends = api.trends_place(23424977)
+# # Common Hashatgs
+# dub_trends = api.trends_place(DUB_WOE_ID)
 # lon_trends = api.trends_place(LON_WOE_ID)
 
 # dub_trends_set = set([trend['name'] for trend in dub_trends[0]['trends']])
-us_trends_set = [trend['name'] for trend in us_trends[0]['trends']]
+# lon_trends_set = set([trend['name'] for trend in lon_trends[0]['trends']])
 
 # common_trends = set.intersection(dub_trends_set, lon_trends_set)
 
 # print(dub_trends_set, common_trends)
-print(us_trends_set)
 
 # ## Get Tweets
 

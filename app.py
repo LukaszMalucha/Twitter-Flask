@@ -102,13 +102,17 @@ def interface():
     
     
     
-##################################################### Hashtag Search
+##################################################### Trend Search
 
-@app.route('/hashtag_search')
-def hashtag_search():
+@app.route('/trend_search')
+def trend_search():
+    
+    us_trends = api.trends_place(23424977)
+    us_trends_list = [trend['name'] for trend in us_trends[0]['trends'][:15]]
+    
+    return render_template("trend_search.html", us_trends_list = us_trends_list)
 
 
-    return render_template("hashtag_search.html")
 
 @app.route('/tweets', methods=['POST'])
 def tweets():
