@@ -108,7 +108,7 @@ def interface():
 def trend_search():
     
     us_trends = api.trends_place(23424977)
-    us_trends_list = [trend['name'] for trend in us_trends[0]['trends'][:15]]
+    us_trends_list = [trend['name'] for trend in us_trends[0]['trends'][:40]]
     
     return render_template("trend_search.html", us_trends_list = us_trends_list)
 
@@ -118,7 +118,7 @@ def trend_search():
 def tweets():
     
     harvest_tweets=mongo.db.harvest_tweets
-    keyword = request.form.get('keyword')
+    keyword = request.form.get('trend')
     if keyword[0] != '#':
         keyword = '#' + keyword 
     count = int(request.form.get('count'))  

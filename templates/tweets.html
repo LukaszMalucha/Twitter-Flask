@@ -1,16 +1,17 @@
 {% extends 'base.html' %} {% block content %}
 <div class="card text-center" id="main_card">
     <div class="row">
-        <img src="{{url_for('static', filename='img/etl/1.png')}}"  style="width:1000px;height:80px;">
+        <img src="{{url_for('static', filename='img/etl/2.png')}}"  style="width:1000px;height:80px;">
     </div>
     <br><br>
     <div class="row">
-        <div class="col-md-12 text-center" style="padding-left:6%">
-            <div class="row text-left">
-            <h1>Top 12 Tweets:</h1>
+            <div class="row text-center">
+            <h1>Tweets Overview:</h1>
             </div>    
             <div class="row text-center">
-                {% for element in tweet_list[:12] %}
+                <div class="col-md-1 text-center"></div>
+                <div class="col-md-10 text-center">
+                {% for element in tweet_list[:9] %}
                 <div class="card" id="tweet">
                     <p>{{element[0]}}</p>
                     &mdash; {{element[2]}}
@@ -19,6 +20,8 @@
                     <span><h5><i class="fas fa-retweet"></i> {{element[3]}}</h5></span>
                 </div>
                 {% endfor %}
+                </div>
+                <div class="col-md-1 text-center"></div>
             </div>
             <br>
             <div class="row text-center">
@@ -31,7 +34,7 @@
                 </div>
                 <div class="col-md-4 text-center"></div>
             </div>
-        </div>
+        
     </div>
 </div>
 {% endblock %}

@@ -496,6 +496,15 @@ input[type="text"], input[type="number"] {
     text-align: center;
 }
 
+[type="radio"]:checked + span::after, [type="radio"].with-gap:checked + span::after
+{
+    background-color: #29abe2 !important;
+}
+
+[type="radio"]:checked + span::after, [type="radio"].with-gap:checked + span::before, [type="radio"].with-gap:checked + span::after {
+   border: 2px solid #29abe2;
+}
+
 
 /*------------------------------------------------------------------------------
     MEDIA QUERIES     
