@@ -181,15 +181,15 @@ def data_load(hashtag):
 ###################################################### Database Management   
     
     
-@app.route('/manage_database', methods=['GET', 'POST'])
-def manage_database(): 
+@app.route('/manage_db', methods=['GET', 'POST'])
+def manage_db(): 
     
     mongo_hashtags = mongo.db.harvest_tweets.distinct("hashtag")
     
     
     sqlite_hashtags = db.session.query(Tweets.hashtag.distinct())
     
-    return render_template("try.html", tweets = tweets, 
+    return render_template("manage_db.html", tweets = tweets, 
                                        mongo_hashtags = mongo_hashtags, 
                                        sqlite_hashtags = sqlite_hashtags)
 

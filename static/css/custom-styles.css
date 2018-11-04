@@ -443,6 +443,25 @@ h2 {
     
 }
 
+#hashtag_card {
+    width:120px;
+    height: 30px;
+}
+
+#button_db {
+    background-color: #0d4861;
+    display: block;
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 10px;
+    text-align: left;
+    margin: 10px;
+}
+
+#button_db i {
+    color: #f26c4f;
+}
 /*------------------------------------------------------------------------------
     EDIT & ADD FORMS + TABLE    
 ------------------------------------------------------------------------------*/
