@@ -187,12 +187,31 @@ def manage_db():
     mongo_hashtags = mongo.db.harvest_tweets.distinct("hashtag")
     
     
-    sqlite_hashtags = db.session.query(Tweets.hashtag.distinct())
+    sqlite_hashtags = list(db.session.query(Tweets.hashtag.distinct()))
     
     return render_template("manage_db.html", tweets = tweets, 
                                        mongo_hashtags = mongo_hashtags, 
                                        sqlite_hashtags = sqlite_hashtags)
+                                       
+                                       
+                                       
+@app.route('/delete_mongodb_tweets/<hashtag>', methods=['GET', 'POST'])
+def delete_mongodb_tweets(hashtag):   
+    
+    mongo.db.harvest_tweets.remove({"hashtag": hashtag})
+    
+    
+    return redirect(url_for('manage_db'))
 
+
+@app.route('/delete_sql_tweets/<hashtag>', methods=['GET', 'POST'])
+def delete_sql_tweets(hashtag):   
+    
+    Tweets.query.filter_by(hashtag=hashtag).delete()
+    db.session.commit()
+    
+    
+    return redirect(url_for('manage_db'))
   
   
     
