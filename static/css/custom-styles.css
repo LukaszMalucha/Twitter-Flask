@@ -55,7 +55,7 @@ html {
     width: 200px;
     margin: 0;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .btn {
@@ -270,7 +270,7 @@ h6 {
 /*}*/
 
 #main_card h1 {
-    color: #434f59;
+    color: #323b43;
     font-weight: bold;
     font-size: 30px;
     margin-top: 0px;
