@@ -42,10 +42,10 @@
     <div class="row text-center">
         <div class="col-md-4 text-center"></div>
         <div class="col-md-2 text-center">
-            <a href="{{url_for('trend_search')}}" class="waves-effect waves-light btn-large" style="background-color: #0d4861">Back to Search</a>
+            <a href="{{url_for('trend_search_blueprint.trend_search')}}" class="waves-effect waves-light btn-large" style="background-color: #0d4861">Back to Search</a>
         </div>
         <div class="col-md-2 text-center">
-            <a href="{{url_for('data_load', hashtag = hashtag)}}" class="waves-effect waves-light btn-large" style="background-color: #6ba546">View DB</a>
+            <a href="{{url_for('trend_search_blueprint.data_load', hashtag = hashtag)}}" class="waves-effect waves-light btn-large" style="background-color: #6ba546">View DB</a>
         </div>
         <div class="col-md-4 text-center"></div>
     </div>

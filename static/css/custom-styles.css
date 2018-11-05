@@ -175,6 +175,11 @@ h6 {
     color: white;
 }
 
+.navbar-default .navbar-brand:focus {
+    color: white;
+    background-color: #29abe2;
+}
+
 .top-navbar .nav>li>a b {
     margin: 0 5px;
 }

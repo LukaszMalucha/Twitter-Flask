@@ -1,13 +1,12 @@
 ################################################################## App Utilities
 import os
 from flask_bootstrap import Bootstrap
-from flask import Flask, render_template, current_app, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for
 
 
 ####################################################################### Mongo DB
 
 from flask_pymongo import PyMongo
-from bson.objectid import ObjectId
 
 ########################################################################## MySQL
 
@@ -19,11 +18,6 @@ import env
 import json
 import tweepy                # REQUIRES PYTON 3.6, async won't work on 3.7
 from tweepy import OAuthHandler
-from tweepy import Stream
-from tweepy.streaming import StreamListener
-from collections import Counter
-from prettytable import PrettyTable
-from operator import itemgetter
 
 
 ################################################################## Data Analysis
@@ -68,17 +62,11 @@ OAUTH_TOKEN_SECRET = os.environ.get("OAUTH_TOKEN_SECRET")
 auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 
-
-
-## BLUE
-
-from features.views import features_blueprint
-app.register_blueprint(features_blueprint)
-
 api = tweepy.API(auth)
 
-#### SQLite Classes
+################################################################# SQLITE CLASSES ###################################################
 
+## For uploading tweets to sqlite
 class Tweets(db.Model):
     __tablename__ = 'tweets'
     id = db.Column('id', db.Integer, primary_key=True)
@@ -91,6 +79,15 @@ class Tweets(db.Model):
     #     self.tweet = tweet
 
 
+##################################################################### BLUEPRINTS ###################################################
+
+from apps.features.views import features_blueprint
+from apps.manage_db.views import manage_db_blueprint
+from apps.trend_search.views import trend_search_blueprint
+
+app.register_blueprint(features_blueprint)
+app.register_blueprint(manage_db_blueprint)
+app.register_blueprint(trend_search_blueprint)
 
 
 
@@ -107,119 +104,6 @@ def dashboard():
     return render_template("dashboard.html")
     
     
-    
-##################################################### Trend Search
-
-@app.route('/trend_search')
-def trend_search():
-    
-    us_trends = api.trends_place(23424977)
-    us_trends_list = [trend['name'] for trend in us_trends[0]['trends'][:40]]
-    
-    return render_template("trend_search.html", us_trends_list = us_trends_list)
-
-
-
-@app.route('/tweets', methods=['POST'])
-def tweets():
-    
-    harvest_tweets=mongo.db.harvest_tweets
-    keyword = request.form.get('trend')
-    if keyword[0] != '#':
-        keyword = '#' + keyword 
-    count = int(request.form.get('count'))  
-    
- 
-    for tweet in tweepy.Cursor(api.search, q=keyword).items(count):
-        data = {}
-        data['text'] = tweet.text
-        data['hashtag'] = keyword
-        data['created_at'] = tweet.created_at
-        data['retweet_count'] = tweet.retweet_count
-        try:
-            harvest_tweets.insert(data)
-        except:
-            pass
-
-    
-    results = [status for status in tweepy.Cursor(api.search, q=keyword).items(count)]
-    
-    tweet_list = [[tweet._json['text'], tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
-                    for tweet in results]
-
-    return render_template("tweets.html", tweet_list = tweet_list, keyword = keyword)    
-    
-    
-@app.route('/data_transform/<hashtag>', methods=['GET', 'POST'])
-def data_transform(hashtag):  
-    
-    hashtag_tweets = mongo.db.harvest_tweets.find({"hashtag": hashtag})
-    
-    
-    text = [element['text'] for element in hashtag_tweets]
-    
-    corpus = []
-    for i in range(0,len(text)):
-            tweet = re.sub('[^a-zA-Z]',' ',text[i])    ## all the indexes
-            tweet = tweet.lower()
-            tweet = tweet.split() 
-            ps = PorterStemmer()
-            tweet = [ps.stem(word) for word in tweet if not word in set(stopwords.words('english'))]
-            tweet = ' '.join(tweet)
-            corpus.append(tweet)
-            tweet_load = Tweets(hashtag = hashtag, tweet = tweet)
-            db.session.add(tweet_load)
-            db.session.commit()
-
-
-    return render_template("data_transform.html", text = text, corpus = corpus, hashtag = hashtag)
-    
-@app.route('/data_load/<hashtag>', methods=['GET', 'POST'])
-def data_load(hashtag): 
-    
-    hashtag_tweets =  Tweets.query.filter_by(hashtag = hashtag)
-    
-
-    return render_template("data_load.html", hashtag_tweets = hashtag_tweets)
-    
-    
-    
-###################################################### Database Management   
-    
-    
-@app.route('/manage_db', methods=['GET', 'POST'])
-def manage_db(): 
-    
-    mongo_hashtags = mongo.db.harvest_tweets.distinct("hashtag")
-    
-    
-    sqlite_hashtags = list(db.session.query(Tweets.hashtag.distinct()))
-    
-    return render_template("manage_db.html", tweets = tweets, 
-                                       mongo_hashtags = mongo_hashtags, 
-                                       sqlite_hashtags = sqlite_hashtags)
-                                       
-                                       
-                                       
-@app.route('/delete_mongodb_tweets/<hashtag>', methods=['GET', 'POST'])
-def delete_mongodb_tweets(hashtag):   
-    
-    mongo.db.harvest_tweets.remove({"hashtag": hashtag})
-    
-    
-    return redirect(url_for('manage_db'))
-
-
-@app.route('/delete_sql_tweets/<hashtag>', methods=['GET', 'POST'])
-def delete_sql_tweets(hashtag):   
-    
-    Tweets.query.filter_by(hashtag=hashtag).delete()
-    db.session.commit()
-    
-    
-    return redirect(url_for('manage_db'))
-  
-  
 
 ################################################################# APP INITIATION #############################################################
 

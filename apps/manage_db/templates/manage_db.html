@@ -18,7 +18,7 @@
                         <div class="col-md-3 text-center"></div>
                         <div class="col-md-6 text-center" style="padding-left: 30px;">
                             {% for element in mongo_hashtags %}
-                            <a href="{{url_for('delete_mongodb_tweets', hashtag = element )}}" class="waves-effect waves-light btn-large" id="button_db"><span><i class="fas fa-trash-alt"></i> {{ element }}</span></a> {% endfor %}
+                            <a href="{{url_for('manage_db_blueprint.delete_mongodb_tweets', hashtag = element )}}" class="waves-effect waves-light btn-large" id="button_db"><span><i class="fas fa-trash-alt"></i> {{ element }}</span></a> {% endfor %}
                         </div>
                         <div class="col-md-3 text-center"></div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="col-md-3 text-center"></div>
                         <div class="col-md-6 text-center" style="padding-left: 30px;">
                             {% for element in sqlite_hashtags %}
-                            <a href="{{url_for('delete_sql_tweets', hashtag = element[0] )}}" class="waves-effect waves-light btn-large" id="button_db"><span><i class="fas fa-trash-alt"></i> {{ element[0] }}</span></a> {% endfor %}
+                            <a href="{{url_for('manage_db_blueprint.delete_sql_tweets', hashtag = element[0] )}}" class="waves-effect waves-light btn-large" id="button_db"><span><i class="fas fa-trash-alt"></i> {{ element[0] }}</span></a> {% endfor %}
                         </div>
                         <div class="col-md-3 text-center"></div>
                     </div>

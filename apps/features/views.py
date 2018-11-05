@@ -1,8 +1,4 @@
-from flask import Flask, render_template, redirect, request, url_for, send_file, session, request, flash, Blueprint
-
-
-
-
+from flask import Blueprint
 
 
 ## BLUEPRINT INIT
@@ -14,10 +10,7 @@ features_blueprint = Blueprint(
     
 from app import *    
     
-    
-    
-    
-    
+ 
 ########################################## City Trends Intersection 
 
 ## http://www.woeidlookup.com/
