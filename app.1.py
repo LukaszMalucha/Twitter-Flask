@@ -68,14 +68,8 @@ OAUTH_TOKEN_SECRET = os.environ.get("OAUTH_TOKEN_SECRET")
 auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 
-
-
-## BLUE
-
-from features.views import features_blueprint
-app.register_blueprint(features_blueprint)
-
 api = tweepy.API(auth)
+
 
 #### SQLite Classes
 
@@ -220,6 +214,138 @@ def delete_sql_tweets(hashtag):
     return redirect(url_for('manage_db'))
   
   
+    
+########################################## City Trends Intersection 
+
+## http://www.woeidlookup.com/
+
+@app.route('/twitter_trends')
+def twitter_trends():
+    
+    message = ""
+    return render_template("twitter_trends.html", message=message)
+    
+    
+@app.route('/common_trends', methods=['GET','POST'])
+def common_trends():
+    
+    city_1 = request.form.get('city_1')
+    city_2 = request.form.get('city_2')
+    
+    try:
+        city_1_trends = api.trends_place(city_1)
+        city_2_trends = api.trends_place(city_2)
+        
+        # if city_1_trends and city_2_trends:
+            
+        city_1_trends_set = set([trend['name'] for trend in city_1_trends[0]['trends']])
+        city_2_trends_set = set([trend['name'] for trend in city_2_trends[0]['trends']])
+        
+        common_trends = set.intersection(city_1_trends_set, city_2_trends_set)
+        
+        clean_trends = []
+        for trend in common_trends:
+            trend = trend.replace('#','')
+            clean_trends.append(trend)
+            
+        clean_trends = sorted(clean_trends)
+        
+        return render_template("common_trends.html", clean_trends = clean_trends)    
+    
+    except:
+    
+        return render_template("twitter_trends.html", 
+                              message="Requested ID does not exist, try another one:" )
+        
+
+
+################################################ Retweet popularity    
+
+@app.route('/retweet_popularity')
+def retweet_popularity():
+    
+    return render_template("retweet_popularity.html")    
+    
+    
+@app.route('/most_retweets', methods=['POST'])
+def most_retweets():
+    
+    keyword = request.form.get('keyword')
+    count = int(request.form.get('count'))
+    min_retweets = int(request.form.get('retweets'))
+    
+    ## get tweets for the search query
+
+    results = [status for status in tweepy.Cursor(api.search, q=keyword).items(count)]
+    
+    
+    pop_tweets = [status
+                    for status in results
+                        if status._json['retweet_count'] > min_retweets]
+    
+    ## tuple of tweet + retweet count                    
+    tweet_list = [[tweet._json['text'], tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
+                    for tweet in pop_tweets]
+                    
+    ## sort descending
+    most_popular_tweets = sorted(tweet_list, key=itemgetter(1), reverse=True)[:count]
+    
+    return render_template("most_retweets.html", most_popular_tweets = most_popular_tweets)
+    
+  
+    
+########################################### Acess Twitter Stream    
+    
+    
+@app.route('/twitter_stream')
+def twitter_stream():
+    
+    return render_template("twitter_stream.html")      
+    
+    
+@app.route('/store_tweets', methods=['POST'])
+def store_tweets():
+    
+    
+    
+    keywords = request.form.get('keyword')
+    limit = int(request.form.get('limit'))
+    
+    keyword_list = keywords.split(',')
+    
+    
+    class MyStreamListener(StreamListener):
+    
+        def __init__(self):
+            super(MyStreamListener, self).__init__()
+            self.num_tweets = 0
+            
+        def on_data(self, data):
+            if self.num_tweets < limit: 
+                self.num_tweets += 1
+                try:
+                    with open('tweet_mining.json', 'a') as tweet_file:
+                        tweet_file.write(data)
+                        return True
+                except BaseException as e:
+                    print("Failed %s"%str(e))
+                return True 
+            else:
+                return False
+            
+        def on_error(self, status):
+            print(status)
+            return True
+
+    ### ADD WAIT TIMER
+    twitter_stream = Stream(auth, MyStreamListener())
+    twitter_stream.filter(track=keyword_list)
+    
+ 
+    return render_template("try.html", keywords = keywords,
+                               message="Tweets have been stored" )     
+
+
 
 ################################################################# APP INITIATION #############################################################
 
