@@ -95,10 +95,10 @@ class Tweets(db.Model):
 ############################################################## Home
 
 @app.route('/')
-@app.route('/interface')
-def interface():
+@app.route('/dashboard')
+def dashboard():
     
-    return render_template("interface.html")
+    return render_template("dashboard.html")
     
     
     

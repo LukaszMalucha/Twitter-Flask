@@ -255,19 +255,6 @@ h6 {
     background-color: transparent;
 }
 
-/*#main_card p {*/
-
-/*    color: black;*/
-
-/*    font-size: 40px;*/
-
-/*    font-weight: bold;*/
-
-/*    padding: 17px;*/
-
-/*    margin-bottom: 0px;*/
-
-/*}*/
 
 #main_card h1 {
     color: #323b43;
@@ -292,7 +279,7 @@ h2 {
 #main_card h5 {
     color: black;
     font-size: 12px;
-    color: #546370;
+    color: #4b5964;
     margin: 5px;
 }
 
