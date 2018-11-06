@@ -1,2 +1,4 @@
 static/* linguist-vendored
-templates/* linguist-vendored
+apps/features/templates/* linguist-vendored
+apps/manage_db/templates/* linguist-vendored
+apps/sentiment/templates/* linguist-vendored
