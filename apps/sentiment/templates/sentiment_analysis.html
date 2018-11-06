@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% block content %}
+<div class="card text-center" id="main_card">
+    <div class="col-md-2 text-center"></div>
+    <div class="col-md-8 text-center">
+        <div class="row text-center">
+            <div class="col-md-5 text-center">
+                <div class="card text-center" id="action-card" style="min-height:300px">
+                    
+                </div>
+            </div>
+            <div class="col-md-2 text-center"></div>
+            <div class="col-md-5 text-center">
+                <div class="card text-center" id="action-card" style="min-height:300px">
+                    <div class="row text-center">
+                        <div class="col-md-3 text-center"></div>
+                        <div class="col-md-6 text-center">
+                            <br>
+                            <h3>Choose Dataset:</h3>
+                            <br>
+                        </div>
+                        <div class="col-md-3 text-center"></div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-md-3 text-center"></div>
+                        <div class="col-md-6 text-center" style="padding-left: 30px;">
+                            {% for element in sqlite_hashtags %}
+                            <a href="{{url_for('manage_db_blueprint.delete_sql_tweets', hashtag = element[0] )}}" class="waves-effect waves-light btn-large" id="button_db"><span><i class="fas fa-trash-alt"></i> {{ element[0] }}</span></a> {% endfor %}
+                        </div>
+                        <div class="col-md-3 text-center"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row text-center">
+            <a href="{{url_for('dashboard')}}" class="waves-effect waves-light btn-large" style="background-color: #0d4861; d">Back</a>
+        </div>
+    </div>
+    <div class="col-md-3 text-center"></div>
+
+</div>
+
+{% endblock %}

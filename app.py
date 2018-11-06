@@ -20,10 +20,9 @@ import tweepy                # REQUIRES PYTON 3.6, async won't work on 3.7
 from tweepy import OAuthHandler
 
 
-################################################################## Data Analysis
+############################################################# Sentiment Analysis
 
 import re
-
 ## get rid of irrelevant and stemming words:
 import nltk   
 # nltk.download('stopwords')          ## stopwords list
@@ -33,6 +32,16 @@ from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 ps = PorterStemmer()
 
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+
+import keras
+from keras.preprocessing.sequence import pad_sequences
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Embedding, LSTM
+from keras.preprocessing.text import Tokenizer
+from keras.models import load_model
 
 
 ################################################################### APP SETTINGS ##############################################################
@@ -84,12 +93,12 @@ class Tweets(db.Model):
 from apps.features.views import features_blueprint
 from apps.manage_db.views import manage_db_blueprint
 from apps.trend_search.views import trend_search_blueprint
+from apps.sentiment.views import sentiment_blueprint
 
 app.register_blueprint(features_blueprint)
 app.register_blueprint(manage_db_blueprint)
 app.register_blueprint(trend_search_blueprint)
-
-
+app.register_blueprint(sentiment_blueprint)
 
 ################################################################### VIEWS ######################################################################
 
