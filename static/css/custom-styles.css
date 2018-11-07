@@ -454,6 +454,20 @@ h2 {
 #button_db i {
     color: #f26c4f;
 }
+
+#button_sentiment {
+    background-color: #0d4861;
+    display: block;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+    text-align: left;
+    margin: 10px;
+}
+
+
+
 /*------------------------------------------------------------------------------
     EDIT & ADD FORMS + TABLE    
 ------------------------------------------------------------------------------*/
