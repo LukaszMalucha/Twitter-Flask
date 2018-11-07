@@ -426,7 +426,7 @@ h2 {
 
 #table_card {
     padding: 5px;
-    max-height: 500px;
+    max-height: 700px;
     overflow: auto;
 }
 
@@ -465,6 +465,7 @@ h2 {
     text-align: left;
     margin: 10px;
 }
+
 
 
 
@@ -530,6 +531,11 @@ input[type="text"], input[type="number"] {
    border: 2px solid #29abe2;
 }
 
+
+.table-bordered > tbody > tr > td {
+    border-left: 1px solid #ddd;
+    border-right-color: transparent;
+}
 
 /*------------------------------------------------------------------------------
     MEDIA QUERIES     

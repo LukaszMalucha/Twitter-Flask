@@ -31,6 +31,8 @@ def sentiment_analysis():
 @sentiment_blueprint.route('/results/<hashtag>')    
 def results(hashtag):
     
+    tweets = mongo.db.harvest_tweets.find({"hashtag": hashtag})
+    tweets = [element['text'] for element in tweets]
     hashtag_tweets =  Tweets.query.filter_by(hashtag = hashtag).all()
     hashtag_tweets = [ element.tweet for element in hashtag_tweets]
     
@@ -59,7 +61,7 @@ def results(hashtag):
                 prediction = 'Positive'
             predictions.append(prediction)
     
-    zipper = zip(hashtag_tweets , predictions)        
+    zipper = zip(tweets , predictions)        
 
     
     return render_template("results.html", hashtag_tweets = hashtag_tweets, predictions = predictions, zipper = zipper)
