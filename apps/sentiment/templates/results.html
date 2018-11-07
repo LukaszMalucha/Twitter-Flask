@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block content %}
+<div class="card text-center" id="main_card">
+    <div class="row">
+        <img src="{{url_for('static', filename='img/etl/4.png')}}" style="width:1000px;height:80px;">
+    </div>
+    <br>
+    <div class="row text-center">
+        <div class="col-md-2 text-center"></div>
+        <div class="col-md-8 text-center">
+            <h1>Tweets Overview:</h1>
+        </div>
+        <div class="col-md-2 text-center"></div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-2 text-center"></div>
+        <div class="col-md-8 text-center">
+            <div class="card text-center" id="table_card">
+                <table style="width:100%">
+                    {% for element in zipper %}
+                    <tr>
+                        <td>{{ element }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2 text-center"></div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-md-4 text-center"></div>
+        <div class="col-md-2 text-center">
+            <a href="{{url_for('trend_search_blueprint.trend_search')}}" class="waves-effect waves-light btn-large" style="background-color: #0d4861">Back to Search</a>
+        </div>
+        <div class="col-md-2 text-center">
+            <a href="" class="waves-effect waves-light btn-large" style="background-color: #6ba546">Sentiment Analysis</a>
+        </div>
+        <div class="col-md-4 text-center"></div>
+    </div>
+
+</div>
+{% endblock %}
