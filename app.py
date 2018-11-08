@@ -14,7 +14,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 #################################################################### Twitter API
 import os
-# import env
+import env
 import json
 import tweepy                # REQUIRES PYTON 3.6, async won't work on 3.7
 from tweepy import OAuthHandler
@@ -25,8 +25,8 @@ from operator import itemgetter
 import re
 ## get rid of irrelevant and stemming words:
 import nltk   
-# nltk.download('stopwords')          ## moved to list for heroku deployment
-# from nltk.corpus import stopwords 
+nltk.download('stopwords')          ## moved to list for heroku deployment
+from nltk.corpus import stopwords 
 
 
 ## getting the root of every word (stemming):
