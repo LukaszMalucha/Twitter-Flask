@@ -20,7 +20,7 @@ Keras-Preprocessing==1.0.5
 Markdown==2.6.11
 MarkupSafe==1.0
 mkl-fft==1.0.6
-mkl-random==1.0.2
+
 nltk==3.3
 numpy==1.15.4
 oauthlib==2.1.0
