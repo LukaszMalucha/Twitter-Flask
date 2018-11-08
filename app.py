@@ -26,7 +26,8 @@ import re
 ## get rid of irrelevant and stemming words:
 import nltk   
 # nltk.download('stopwords')          ## stopwords list
-from nltk.corpus import stopwords 
+# from nltk.corpus import stopwords 
+
 
 ## getting the root of every word (stemming):
 from nltk.stem.porter import PorterStemmer
