@@ -14,7 +14,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 #################################################################### Twitter API
 import os
-# import env
+import env
 import json
 import tweepy                # REQUIRES PYTON 3.6, async won't work on 3.7
 from tweepy import OAuthHandler
@@ -25,7 +25,7 @@ from operator import itemgetter
 import re
 ## get rid of irrelevant and stemming words:
 import nltk   
-# nltk.download('stopwords')          ## stopwords list
+# nltk.download('stopwords')          ## moved to list for heroku deployment
 # from nltk.corpus import stopwords 
 
 
@@ -33,7 +33,7 @@ import nltk
 from nltk.stem.porter import PorterStemmer
 ps = PorterStemmer()
 
-import pandas as pd
+# import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 
