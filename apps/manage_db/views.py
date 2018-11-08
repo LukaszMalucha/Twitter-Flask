@@ -12,15 +12,16 @@ from app import *
 
 
 
-###################################################### Database Management   
+############################################################ Database Management   
     
     
 @manage_db_blueprint.route('/manage_db', methods=['GET', 'POST'])
 def manage_db(): 
     
+    ## MongoDB hashtags
     mongo_hashtags = mongo.db.harvest_tweets.distinct("hashtag")
     
-    
+    ## SQLITE hashtags
     sqlite_hashtags = list(db.session.query(Tweets.hashtag.distinct()))
     
     return render_template("manage_db.html", mongo_hashtags = mongo_hashtags, 
@@ -31,6 +32,7 @@ def manage_db():
 @manage_db_blueprint.route('/delete_mongodb_tweets/<hashtag>', methods=['GET', 'POST'])
 def delete_mongodb_tweets(hashtag):   
     
+    ## Remove MongoDB Collection
     mongo.db.harvest_tweets.remove({"hashtag": hashtag})
     
     
@@ -40,6 +42,7 @@ def delete_mongodb_tweets(hashtag):
 @manage_db_blueprint.route('/delete_sql_tweets/<hashtag>', methods=['GET', 'POST'])
 def delete_sql_tweets(hashtag):   
     
+    ## Remove from SQLite database
     Tweets.query.filter_by(hashtag=hashtag).delete()
     db.session.commit()
     

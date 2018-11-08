@@ -11,11 +11,12 @@ trend_search_blueprint = Blueprint(
 from app import *    
 
 
-##################################################### Trend Search
+################################################################### Trend Search
 
 @trend_search_blueprint.route('/trend_search')
 def trend_search():
     
+    ## Get US most trending
     us_trends = api.trends_place(23424977)
     us_trends_list = [trend['name'] for trend in us_trends[0]['trends'][:40]]
     
@@ -26,6 +27,7 @@ def trend_search():
 @trend_search_blueprint.route('/tweets', methods=['POST'])
 def tweets():
     
+    ## Upload tweets to MongoDB
     harvest_tweets=mongo.db.harvest_tweets
     keyword = request.form.get('trend')
     if keyword[0] != '#':
@@ -47,18 +49,23 @@ def tweets():
     
     results = [status for status in tweepy.Cursor(api.search, q=keyword).items(count)]
     
+    ## Display tweets
     tweet_list = [[tweet._json['text'], tweet._json['created_at'][:19], tweet._json['user']['name'], tweet._json['retweet_count']]
                     for tweet in results]
 
     return render_template("tweets.html", tweet_list = tweet_list, keyword = keyword)    
     
     
+    
+    
 @trend_search_blueprint.route('/data_transform/<hashtag>', methods=['GET', 'POST'])
 def data_transform(hashtag):  
     
+    ## Get chosen hashtag tweets
     hashtag_tweets = mongo.db.harvest_tweets.find({"hashtag": hashtag})
     
     
+    ## Preprocess text for future senitment analysis
     text = [element['text'] for element in hashtag_tweets]
     
     corpus = []
@@ -77,9 +84,12 @@ def data_transform(hashtag):
 
     return render_template("data_transform.html", text = text, corpus = corpus, hashtag = hashtag)
     
+    
+    
 @trend_search_blueprint.route('/data_load/<hashtag>', methods=['GET', 'POST'])
 def data_load(hashtag): 
     
+    ## Display SQL DB tweets
     hashtag_tweets =  Tweets.query.filter_by(hashtag = hashtag)
     
 

@@ -18,7 +18,7 @@ import env
 import json
 import tweepy                # REQUIRES PYTON 3.6, async won't work on 3.7
 from tweepy import OAuthHandler
-
+from operator import itemgetter
 
 ############################################################# Sentiment Analysis
 

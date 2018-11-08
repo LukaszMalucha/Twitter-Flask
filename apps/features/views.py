@@ -37,6 +37,7 @@ def common_trends():
         city_1_trends_set = set([trend['name'] for trend in city_1_trends[0]['trends']])
         city_2_trends_set = set([trend['name'] for trend in city_2_trends[0]['trends']])
         
+        # find out common trends
         common_trends = set.intersection(city_1_trends_set, city_2_trends_set)
         
         clean_trends = []
@@ -89,7 +90,6 @@ def most_retweets():
     return render_template("most_retweets.html", most_popular_tweets = most_popular_tweets)
     
 
-################################################################# APP INITIATION #############################################################
     
     
     
