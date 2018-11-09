@@ -79,11 +79,11 @@ Choose a keyword and find out most popular tweets in a subject:
 
 ## TOOLS, MODULES & TECHNIQUES
 
-##### Python – web development:
+##### Python – app development:
 Flask | Tweepy | Oauthlib | Pickle
 
 ##### Databases
-MongoDB | mlab | Sqlite
+MongoDB | Sqlite 
 
 ##### Python – Text Processing
 nltk | re 
