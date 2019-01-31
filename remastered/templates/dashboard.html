@@ -1,0 +1,90 @@
+{% extends 'base.html' %} {% block content %}
+<div class="card" id="main_card">
+
+    <br><br>
+    <div class="col-md-12 text-left">
+        <div class="row text left">
+            <h1>Twitter Analytics:</h1>
+        </div>
+        <br>
+    </div>
+    <div class="col-md-12 text-left" style="padding-left:4%">
+        <div class="row text left">
+            <div class="card" id="dashboard_card">
+                <div class="card" id="card-top">
+                    <span><h3>Trend Search</h3></span>
+                    <br>
+                    <span><h5>Find out what is currently trending in US. Pick most interesting subject and guide your data sample through ETL pipeline to make it ready for sentiment analysis.</h5></span>
+                    <br>
+                </div>
+                <div class="card" id="card-bottom">
+                    <a href="{{url_for('dashboard')}}" class="waves-effect waves-light btn-large" id="btn-card">Trends</a>
+                </div>
+            </div>
+            <div class="card" id="dashboard_card">
+                <div class="card" id="card-top">
+                    <span><h3>Manage Database</h3></span>
+                    <br>
+                    <span><h5>Get rid of obsolete collections from MongoDB or delete processed data from SQLite database.</h5></span>
+                    <br>
+                </div>
+                <div class="card" id="card-bottom">
+                    <a href="{{url_for('dashboard')}}" class="waves-effect waves-light btn-large" id="btn-card">Manage DB</a>
+                </div>
+            </div>
+            <div class="card" id="dashboard_card">
+                <div class="card" id="card-top">
+                    <span><h3>Sentiment Analysis</h3></span>
+                    <br>
+                    <span><h5>Apply Deep learning LSTM model on previously stored Twitter dataset. Find out what's the dominating sentiment among conversation participants - positive, negative or neutral.</h5></span>
+                    <br>
+                </div>
+                <div class="card" id="card-bottom">
+                    <a href="{{url_for('dashboard')}}" class="waves-effect waves-light btn-large" id="btn-card">Analysis</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 text-left" style="padding-left:4%">
+        <div class="row text left"></div>
+    </div>
+    <div class="col-md-12 text-left" style="padding-left:4%">
+        <div class="row text left"></div>
+    </div>
+    <div class="col-md-12 text-left">
+        <div class="row text left">
+            <h1>Twitter API Features:</h1>
+        </div>
+        <br>
+    </div>
+    <div class="col-md-12 text-left" style="padding-left:4%">
+        <div class="row text left">
+            <div class="card" id="dashboard_card">
+                <div class="card" id="card-top">
+                    <span><h3>Tale of Two Cities</h3></span>
+                    <br>
+                    <span><h5>Find out what is currently trending in two chosen locations. Specify woe_id and find out common trends.
+                                    </h5></span>
+                    <br>
+
+                </div>
+                <div class="card" id="card-bottom">
+                    <a href="{{url_for('dashboard')}}" class="waves-effect waves-light btn-large" id="btn-card">Common</a>
+                </div>
+            </div>
+            <div class="card" id="dashboard_card">
+                <div class="card" id="card-top">
+                    <span><h3>Popular Retweets</h3></span>
+                    <br>
+                    <span><h5>Choose a keyword and find out most popular tweets in a subject.</h5></span>
+                    <br>
+
+                </div>
+                <div class="card" id="card-bottom">
+                    <a href="{{url_for('dashboard')}}" class="waves-effect waves-light btn-large" id="btn-card">Retweets</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %} {% block content %}
+<div class="card text-center" id="main_card">
+
+    <div class="row">
+        <div class="col-md-3 text-center"></div>
+        <div class="col-md-6 text-center">
+
+            <div class="card text-center" id="action-card">
+                <div class="row">
+                    <div class="col-md-2 text-center"></div>
+                    <div class="col-md-8 text-center">
+                        <br>
+                        <h3>Popular Retweets</h3>
+                        <br>
+                    </div>
+                    <div class="col-md-2 text-center"></div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-3 text-center">
+
+                    </div>
+
+                    <div class="col-md-6 text-center">
+                        <form action="{{url_for('features_blueprint.most_retweets')}}" method="POST">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <h4>Search Keyword<h4>
+                                    <input id="keyword" name="keyword" type="text" class="validate" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <h4>Retweets</h4>
+                                    <input id="retweets" name="retweets" type="number" class="validate" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <h4>Results (max.50)</h4>
+                                    <input id="count" name="count" type="number" class="validate" max="50" required>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row text-center">
+                                <button class="btn waves-effect waves-light" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3 text-center"></div>
+
+                </div>
+
+
+                <div class="col-md-3 text-center"></div>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row text-center">
+            <a href="{{url_for('dashboard')}}" class="waves-effect waves-light btn-large" style="background-color: #0d4861; dmargin-left: 1px;margin-left: 30px;">Back to Menu</a>
+    </div>
+</div>
+{% endblock %}
