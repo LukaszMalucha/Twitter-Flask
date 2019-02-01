@@ -20,21 +20,20 @@ html {
 #wrapper {
     width: 100%;
 
+
 }
 
 #page-wrapper {
     position: relative;
     top: 55px;
     -moz-box-shadow: 0 0 10px #757575;
-    background-image: url('../../static/img/background.png');
-    background-size: cover;
 }
 
 #page-index {
     width: 100%;
+    height:100%;
     margin: 10px 20px 10px 0px;
     padding: 15px 30px;
-
 }
 
 #page-index a {
@@ -86,71 +85,62 @@ h6 {
     DASHBOARD CARDS    
 ------------------------------------------------------------------------------*/
 
-#main_card {
-
-    vertical-align: middle;
-    border-width: 3px;
+.dashboard-cards {
+    border: none;
     padding: 20px;
+    margin-top: 2%;
     box-shadow: none;
-    background-color: transparent;
+    width: 100%;
+    min-height: 600px;
+    background-image: url('../../static/img/backg.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 
-#main_card h1 {
-    color: #323b43;
-    font-weight: bold;
-    font-size: 30px;
-    margin-top: 0px;
-    margin-bottom: 20px;
+.row-title {
+    width: 100%;
+    background-color: #cfd4d8;
+    color: white;
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px #a5a9ac;
 }
 
-#main_card h3,
-h2 {
-    color: black;
-    font-size: 20px;
-    margin: 5px;
+.row-cards {
+    width: 100%;
+    text-align: center;
 }
 
-#main_card h4 {
-    color: black;
-    margin: 5px;
+.dashboard-card {
+    min-height: 240px;
+    border-radius: 5px;
 }
 
-#main_card h5 {
-    color: black;
-    font-size: 12px;
-    color: #4b5964;
-    margin: 5px;
-}
-
-
-#dashboard_card {
-    float: left;
-    height: 240px;
-    width: 240px;
-    margin-left: 40px;
-    border: 1px solid #C0C0C0;
-    padding: 0px;
-
-}
-
-#card-top {
-    box-shadow: none;
-    padding: 5%;
-    height: 80%;
-    margin: 0px;
+.card-top {
     text-align: left;
-
-}
-
-#card-top h3 {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
+    padding: 5%;
+    margin: 0px;
 }
 
-#card-bottom {
-    box-shadow: none;
-    height: 20%;
+.card-middle {
+    font-size: 13px;
+    padding: 5%;
+    text-align: left;
+    margin: 0px;
+    line-height: 1.2;
+}
+
+.card-bottom {
+    text-align: center;
+    padding: 10% 5% 5% 5%;
     margin: 0px;
 }
 
