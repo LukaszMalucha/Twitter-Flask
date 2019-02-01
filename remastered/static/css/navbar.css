@@ -157,6 +157,13 @@ nav ul a:hover {
    }
 }
 
+@media(max-width:1440px) {
+    .top-navbar {
+        padding-left: 36%;
+    }
+
+}
+
 
 @media(max-width:952px) {
     .top-navbar {

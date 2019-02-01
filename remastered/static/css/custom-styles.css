@@ -19,8 +19,6 @@ html {
 
 #wrapper {
     width: 100%;
-
-
 }
 
 #page-wrapper {
@@ -32,7 +30,6 @@ html {
 #page-index {
     width: 100%;
     height:100%;
-    margin: 10px;
     padding: 15px 15px;
 }
 
@@ -46,39 +43,16 @@ html {
     text-align: center;
 }
 
-.btn,
-.btn-large {
+.btn {
     color: white;
     background-color: #6ba546;
     border: none;
-    width: 200px;
+    width: 30%;
     margin: 0;
     font-weight: bold;
     font-size: 12px;
 }
 
-.btn {
-    line-height: 25px;
-}
-
-.btn-large:hover,
-.btn-large:focus,
-.btn:hover,
-.btn:focus {
-    background-color: #4b7331;
-    color: white;
-}
-
-
-#text {
-    color: black;
-}
-
-
-
-h6 {
-    color: black;
-}
 
 
 /*------------------------------------------------------------------------------
@@ -92,7 +66,7 @@ h6 {
     margin-top: 2%;
     box-shadow: none;
     width: 100%;
-    min-height: 600px;
+    min-height: 700px;
     background-image: url('../../static/img/backg.png');
     background-repeat: no-repeat;
     background-size: auto;
@@ -118,6 +92,46 @@ h6 {
     text-align: center;
     padding: 2% 1% 2% 1%;
 }
+
+.row-form-title {
+    margin: auto;
+    width: 40%;
+    background-color: #096e88;
+    color: white;
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px black;
+}
+
+.row-form-title p {
+    font-weight: normal;
+    font-size: 1.5rem;
+}
+
+.row-form-title a  {
+    color: #60bdf5;
+}
+
+.row-form-title a:hover  {
+    color: #60e2f5;
+}
+
+.row-form-content {
+    margin: auto;
+    width: 40%;
+}
+
+.row-home-button {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+
 
 .dashboard-card {
     min-height: 240px;
@@ -149,6 +163,30 @@ h6 {
 }
 
 
+.form-card {
+    min-height: 180px;
+    padding: 10% 25% 10% 25%;
+    border-radius: 10px;
+    background-color: #096e88;
+    color: white;
+}
+
+
+.form-submit-button {
+    background-color: #096e88;
+    height: 42px;
+}
+
+.form-submit-button:hover, active, focus {
+    background-color: #0a7d9b;
+    color: white;
+}
+
+
+
+
+
+
 #navigation {
     color: white;
     background-color: #6ba546;
@@ -161,6 +199,30 @@ h6 {
     line-height: 350%;
     margin: auto;
 }
+
+
+
+
+.home-button {
+margin-bottom: 50px;
+    width: 12%;
+    height: 44px;
+    padding: 10px;
+    background-color: black;
+    font-size: 14px
+}
+
+.home-button:hover, active, focus {
+    color: black;
+    background: white;
+
+}
+
+
+
+
+
+
 
 
 #action-card h3 {
@@ -299,6 +361,27 @@ h6 {
     EDIT & ADD FORMS + TABLE    
 ------------------------------------------------------------------------------*/
 
+input.invalid[type="number"]:not(.browser-default), input.invalid[type="number"]:not(.browser-default):focus,
+input.invalid[type="number"]:not(.browser-default), input[type="number"]:not(.browser-default):focus:not([readonly]),
+input[type="number"]:not(.browser-default), input.valid[type="number"]:not(.browser-default){
+    border-bottom: none;
+    box-shadow: none;
+
+}
+
+
+
+input[type="number"]:not(.browser-default) {
+    background-color: #0a7d9b;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
 input[type=text],
 select,
 textarea {
@@ -400,6 +483,10 @@ input[type="text"], input[type="number"] {
     min-height: 110px;
 }
 
+    .home-button {
+        width: 20%
+    }
+
 }
 
 /* MAX WIDTHS: MEDIUM SCREEN---------------------------------------------------*/
@@ -432,6 +519,16 @@ input[type="text"], input[type="number"] {
         text-align: center;
     }
 
+
+    .row-form-content,
+    .row-form-title {
+        width: 100%;
+    }
+
+    .home-button {
+        width: 50%
+    }
+
 }
 
 
@@ -458,9 +555,11 @@ input[type="text"], input[type="number"] {
     margin-left: 5px;
     }
 
+
     .dashboard-card {
         width: 100%
     }
+
 
 }
 

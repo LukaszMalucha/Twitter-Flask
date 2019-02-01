@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
-
+<div class="dashboard-cards">
 <div class="row row-title">
     Twitter Analytics
 </div>
@@ -62,7 +62,7 @@
                 Find out what is currently trending in two chosen locations. Specify woe_id and find out common trends.
             </div>
             <div class="card-bottom">
-                <a href="{{url_for('dashboard')}}" class="waves-effect waves-light btn-large" id="navigation">Common</a>
+                <a href="{{url_for('api_features_blueprint.twitter_trends')}}" class="waves-effect waves-light btn-large" id="navigation">Common</a>
             </div>
         </div>
     </div>
@@ -79,5 +79,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}

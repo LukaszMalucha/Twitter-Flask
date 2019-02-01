@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% block content %}
+<div class="card text-center" id="main_card">
+
+    <div class="row">
+        <div class="col-md-3 text-center"></div>
+        <div class="col-md-6 text-center">
+            <div class="card text-center" id="action-card">
+                <div class="row">
+                    <div class="col-md-2 text-center"></div>
+                    <div class="col-md-8 text-center">
+                        <br>
+                        <h3>Specify woe_id of two locations</h3>
+                        <br>
+                        <h5>(To find out what's city's woe_id please visit <a target="_blank" href="http://www.woeidlookup.com/"> woeidlookup.com</a>)</h5>
+                    </div>
+                    <div class="col-md-2 text-center"></div>
+                </div>
+                <div class="row">
+                    <h3 style="color: red">{{ message }} </h3>
+                </div>
+                <br>
+                <br>
+                <div class="row text-center">
+                    <div class="col-md-3 text-center">
+
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <form action="{{url_for('dashboard')}}" method="POST">
+                            <div class="row">
+                                <div class="input-field col s5">
+                                    <i class="fas fa-city"></i>
+                                    <br>
+                                    <br>
+                                    <input id="city_1" name="city_1" type="number" class="validate" required>
+                                </div>
+                                <div class="input-field col s2"></div>
+                                <div class="input-field col s5">
+                                    <i class="fas fa-city"></i>
+                                    <br>
+                                    <br>
+                                    <input id="city_2" name="city_2" type="number" class="validate" required>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row text-center">
+                                <button class="btn waves-effect waves-light" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3 text-center"></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-center"></div>
+    </div>
+    <br>
+    <div class="row text-center">
+            <a href="{{url_for('dashboard')}}" class="waves-effect waves-light btn-large" style="background-color: #0d4861; dmargin-left: 1px;margin-left: 30px;">Back to Menu</a>
+    </div>
+</div>
+{% endblock %}
