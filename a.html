@@ -1,0 +1,35 @@
+<div class="dashboard-cards">
+    <br><br>
+    <div class="row row-form-title">
+        Popular Retweets
+        <br>
+        <p>Specify the keyword search and max. search results</p>
+    </div>
+    <br><br>
+    <form action="{{url_for('dashboard')}}" method="POST">
+        <div class="row row-form-content">
+            <div class="col-xs-6  col-sm-6 col-md-4 col-lg-8 text-center">
+                <div class="card form-card">
+                    <div class="row text-center">
+                        <h4>Searched Keyword</h4>
+                        <input id="keyword" name="keyword" type="text" class="validate" required>
+                    </div>
+                    <div class="row text-center">
+                        <h4>Results (max.50)</h4>
+                        <input id="count" name="count" type="number" class="validate" max="50" required>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="row row-form-content">
+            <button class="btn form-submit-button" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+<br>
+<div class="row row-home-button">
+
+    <a href="{{url_for('dashboard')}}" class="btn home-button">Back to Homepage</a>
+</div>

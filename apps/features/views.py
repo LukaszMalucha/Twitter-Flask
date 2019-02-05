@@ -85,7 +85,7 @@ def most_retweets():
                     for tweet in pop_tweets]
                     
     ## sort descending
-    most_popular_tweets = sorted(tweet_list, key=itemgetter(1), reverse=True)[:count]
+    most_popular_tweets = sorted(tweet_list, key=itemgetter(3), reverse=True)[:count]
     
     return render_template("most_retweets.html", most_popular_tweets = most_popular_tweets)
     
