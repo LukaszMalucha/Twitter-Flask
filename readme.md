@@ -1,9 +1,5 @@
 ## Twitter API Dashboard
 
-### Link to Application:
-[Heroku App](https://twitter-api-dashboard.herokuapp.com/)
-
-
 ## PROJECT OVERVIEW
 
 Project Goal was to create fully functional interface for Twitter API. Flask App allows user to find out what is currently trending and extract data sample to MongoDB.
